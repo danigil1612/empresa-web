@@ -1,0 +1,5 @@
+# Entorns
+
+- Local
+- Staging
+- Producció

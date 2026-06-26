@@ -1,0 +1,15 @@
+{
+  "name": "empresa-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Web corporativa amb dashboard per empreses clients",
+  "scripts": {
+    "dev": "echo \"Configurar dev més endavant\"",
+    "format": "echo \"Configurar Prettier més endavant\"",
+    "lint": "echo \"Configurar ESLint més endavant\""
+  },
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ]
+}
