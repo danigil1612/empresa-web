@@ -1,5 +1,5 @@
 # User Flow
 
-Visitant → Home → Producte → Contacte
+Visitante → Home → Metodología / Producto / Empresa → Pide una demo
 
-Client → Login → Dashboard → Dades
+Cliente existente → Acceso dashboard → Dashboard externo
