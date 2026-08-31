@@ -25,7 +25,7 @@ usePageSeo(
               {{ content.common.actions.demo }}
               <span aria-hidden="true">→</span>
             </NuxtLink>
-            <NuxtLink class="button button--ghost" to="/metodologia">
+            <NuxtLink class="button button--ghost" to="/como-trabajamos">
               {{ content.home.hero.how }}
             </NuxtLink>
           </div>
@@ -77,6 +77,22 @@ usePageSeo(
       </div>
     </section>
 
+    <section class="section pulse-intro-section image-ready-section">
+      <div class="shell pulse-intro">
+        <div v-reveal class="pulse-intro__heading">
+          <p class="eyebrow">{{ content.home.introduction.eyebrow }}</p>
+          <h2>{{ content.home.introduction.title }}</h2>
+        </div>
+        <div v-reveal="100" class="pulse-intro__copy">
+          <p>{{ content.home.introduction.text }}</p>
+          <NuxtLink class="text-link" to="/quienes-somos">
+            {{ content.home.introduction.link }}
+            <span aria-hidden="true">→</span>
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <section class="section methodology-section">
       <div class="shell">
         <div class="method-panel">
@@ -103,7 +119,7 @@ usePageSeo(
             </article>
           </div>
 
-          <NuxtLink class="text-link text-link--light" to="/metodologia">
+          <NuxtLink class="text-link text-link--light" to="/como-trabajamos">
             {{ content.home.methodology.link }}
             <span aria-hidden="true">→</span>
           </NuxtLink>
@@ -117,7 +133,7 @@ usePageSeo(
           <p class="eyebrow">{{ content.home.product.eyebrow }}</p>
           <h2>{{ content.home.product.title }}</h2>
           <p>{{ content.home.product.intro }}</p>
-          <NuxtLink class="text-link" to="/producte">
+          <NuxtLink class="text-link" to="/que-ofrecemos">
             {{ content.home.product.link }}
             <span aria-hidden="true">→</span>
           </NuxtLink>

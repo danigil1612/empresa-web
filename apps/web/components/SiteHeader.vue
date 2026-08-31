@@ -13,9 +13,10 @@ let lastScrollY = 0
 let animationFrame: number | null = null
 
 const navigation = computed(() => [
-  { label: content.value.common.nav.methodology, to: '/metodologia' },
-  { label: content.value.common.nav.product, to: '/producte' },
-  { label: content.value.common.nav.company, to: '/empresa' },
+  { label: content.value.common.nav.home, to: '/' },
+  { label: content.value.common.nav.methodology, to: '/como-trabajamos' },
+  { label: content.value.common.nav.product, to: '/que-ofrecemos' },
+  { label: content.value.common.nav.company, to: '/quienes-somos' },
 ])
 
 const dashboardUrl = computed(() => String(config.public.dashboardUrl || ''))

@@ -19,11 +19,11 @@ const { content } = usePulseI18n()
         :aria-label="content.common.a11y.footerNav"
       >
         <span>{{ content.common.footer.explore }}</span>
-        <NuxtLink to="/metodologia">
+        <NuxtLink to="/como-trabajamos">
           {{ content.common.nav.methodology }}
         </NuxtLink>
-        <NuxtLink to="/producte">{{ content.common.nav.product }}</NuxtLink>
-        <NuxtLink to="/empresa">{{ content.common.nav.company }}</NuxtLink>
+        <NuxtLink to="/que-ofrecemos">{{ content.common.nav.product }}</NuxtLink>
+        <NuxtLink to="/quienes-somos">{{ content.common.nav.company }}</NuxtLink>
         <NuxtLink to="/demo">{{ content.common.nav.demo }}</NuxtLink>
       </div>
 
