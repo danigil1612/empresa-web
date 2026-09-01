@@ -14,11 +14,12 @@ export const messages = {
   es: {
     common: {
       nav: {
-        methodology: 'Metodología',
-        product: 'Producto',
-        company: 'Empresa',
+        home: 'Home',
+        methodology: 'Cómo trabajamos',
+        product: 'Qué ofrecemos',
+        company: 'Quiénes somos',
         demo: 'Pide una demo',
-        dashboard: 'Acceso dashboard',
+        dashboard: 'Acceso clientes',
       },
       language: {
         label: 'Cambiar idioma',
@@ -34,7 +35,7 @@ export const messages = {
       actions: {
         demo: 'Pide una demo',
         discover: 'Descubrir más',
-        product: 'Ver producto',
+        product: 'Ver qué ofrecemos',
         back: 'Volver al formulario',
         backToTop: 'Volver arriba',
       },
@@ -124,11 +125,17 @@ export const messages = {
           },
         ],
       },
+      introduction: {
+        eyebrow: 'Somos Pulse',
+        title: 'Escuchar mejor cambia la forma de cuidar y decidir.',
+        text: 'Ayudamos a las empresas a entender cómo está realmente su equipo, detectar señales antes de que se conviertan en problemas y tomar decisiones con una visión más clara.',
+        link: 'Conoce quiénes somos',
+      },
       methodology: {
-        eyebrow: 'La metodología Pulse',
+        eyebrow: 'Así trabajamos',
         title: 'Escuchamos a tu equipo. Detectamos patrones.',
         accent: 'Te damos decisiones claras.',
-        link: 'Descubre la metodología',
+        link: 'Conoce cómo trabajamos',
         steps: [
           {
             tag: '1. El equipo responde',
@@ -148,11 +155,11 @@ export const messages = {
         ],
       },
       product: {
-        eyebrow: 'Una lectura distinta',
+        eyebrow: 'Qué ofrecemos',
         title: 'No medimos satisfacción. Medimos estado emocional real.',
         intro:
           'Pulse reduce la distancia entre lo que vive el equipo y lo que la organización necesita saber para cuidarlo.',
-        link: 'Explora el producto',
+        link: 'Descubre qué ofrecemos',
         benefits: [
           {
             title: 'Recogida anónima.',
@@ -216,16 +223,39 @@ export const messages = {
     },
     methodology: {
       seo: {
-        title: 'Metodología',
+        title: 'Cómo trabajamos',
         description:
-          'Descubre cómo Pulse recoge señales anónimas, detecta patrones emocionales y ofrece una visión agregada para decidir.',
+          'Así trabaja Pulse para escuchar al equipo, detectar patrones e interpretar señales que ayudan a decidir.',
       },
       hero: {
-        eyebrow: 'Metodología',
-        title: 'No medimos satisfacción.',
-        accent: 'Medimos estado emocional real.',
+        eyebrow: 'Cómo trabajamos',
+        title: 'Así trabajamos para entender cómo está',
+        accent: 'realmente tu equipo.',
         description:
-          'Una metodología de escucha continua que transforma respuestas simples en una visión emocional útil, agregada y accionable.',
+          'Empezamos por escuchar de forma sencilla. Después convertimos esas señales en una visión clara que ayuda a cuidar y decidir mejor.',
+      },
+      process: {
+        eyebrow: 'Una forma sencilla de escuchar',
+        title: 'Cuatro pasos para pasar de una respuesta breve a una decisión con contexto.',
+        text: 'La experiencia es ligera para el equipo y útil para las personas que deben acompañarlo.',
+        steps: [
+          {
+            title: 'Escuchamos',
+            text: 'El equipo responde en pocos segundos, sin formularios largos ni interrumpir su jornada.',
+          },
+          {
+            title: 'Detectamos',
+            text: 'Las señales individuales y anónimas se convierten en patrones del equipo, nunca en perfiles personales.',
+          },
+          {
+            title: 'Interpretamos',
+            text: 'Pulse identifica tendencias, cambios y posibles señales de alerta que merece la pena observar.',
+          },
+          {
+            title: 'Ayudamos a decidir',
+            text: 'RR. HH. recibe información clara para orientar conversaciones, prioridades y decisiones.',
+          },
+        ],
       },
       journey: {
         eyebrow: 'Tres momentos, una visión',
@@ -317,17 +347,78 @@ export const messages = {
     },
     product: {
       seo: {
-        title: 'Producto',
+        title: 'Qué ofrecemos',
         description:
-          'Conoce Pulse: participación simple, señales anónimas y visión agregada para equipos de RR. HH. y liderazgo.',
+          'Descubre qué recibe tu organización con Pulse: escucha continua, visión global, interpretación e implementación acompañada.',
       },
       hero: {
-        eyebrow: 'Producto',
-        title: 'Menos ruido.',
-        accent: 'Más señales que importan.',
+        eyebrow: 'Qué ofrecemos',
+        title: 'Todo lo que necesitas para entender mejor',
+        accent: 'cómo está tu equipo.',
         description:
-          'Pulse organiza el estado emocional del equipo en una experiencia sencilla para las personas y una lectura clara para la organización.',
-        action: 'Ver Pulse en una demo',
+          'Combinamos una escucha sencilla para las personas con información clara, interpretación y acompañamiento para la organización.',
+        action: 'Descubrirlo en una demo',
+      },
+      offer: {
+        eyebrow: 'Lo que recibe tu organización',
+        title: 'Una forma completa de escuchar, comprender y acompañar.',
+        text: 'Pulse no es solo una herramienta. Es una experiencia de escucha continua y una forma más clara de convertir señales en decisiones.',
+        groups: [
+          {
+            title: 'Escuchar sin fricción',
+            text: 'Una experiencia accesible que facilita respuestas honestas y frecuentes.',
+            items: [
+              {
+                title: 'Escucha continua',
+                text: 'Señales frecuentes para entender la evolución, no solo una fotografía anual.',
+              },
+              {
+                title: 'Kiosco o tablet',
+                text: 'Un punto de participación sencillo que se integra en el día a día del equipo.',
+              },
+              {
+                title: 'Recogida anónima',
+                text: 'Respuestas protegidas y sin exposición individual.',
+              },
+            ],
+          },
+          {
+            title: 'Comprender con perspectiva',
+            text: 'La información se ordena para mostrar patrones sin perder el contexto humano.',
+            items: [
+              {
+                title: 'Sin exposición individual',
+                text: 'La organización observa el conjunto, no a personas concretas.',
+              },
+              {
+                title: 'Visión global',
+                text: 'Una lectura compartida del estado y la evolución del equipo.',
+              },
+              {
+                title: 'Dashboard para RR. HH.',
+                text: 'Tendencias y posibles focos de atención reunidos en un espacio claro.',
+              },
+            ],
+          },
+          {
+            title: 'Pasar a la acción',
+            text: 'Acompañamiento para que los datos se conviertan en conversaciones y decisiones útiles.',
+            items: [
+              {
+                title: 'Interpretación de datos',
+                text: 'Contexto para entender qué cambia, por qué importa y qué conviene observar.',
+              },
+              {
+                title: 'Informes periódicos',
+                text: 'Resúmenes de evolución, patrones destacados y próximos pasos.',
+              },
+              {
+                title: 'Implementación y acompañamiento',
+                text: 'Preparación, comunicación, puesta en marcha y seguimiento con el equipo.',
+              },
+            ],
+          },
+        ],
       },
       showcase: {
         eyebrow: 'Visión global',
@@ -433,17 +524,32 @@ export const messages = {
     },
     company: {
       seo: {
-        title: 'Empresa',
+        title: 'Quiénes somos',
         description:
-          'Conoce la visión de Pulse: ayudar a las organizaciones a escuchar antes, cuidar mejor y decidir con más contexto.',
+          'Conoce la historia, el propósito y la forma de entender el bienestar que impulsa a Pulse.',
       },
       hero: {
-        eyebrow: 'Empresa',
-        title: 'Equipos más escuchados.',
-        accent: 'Organizaciones más conscientes.',
+        eyebrow: 'Quiénes somos',
+        title: 'Pulse nace para ayudar a las empresas a escuchar mejor a las personas',
+        accent: 'que las hacen crecer.',
         description:
-          'Pulse nace para acortar la distancia entre cómo se siente un equipo y cuándo una organización consigue verlo.',
+          'Somos una iniciativa centrada en hacer visible, de forma respetuosa y útil, cómo está realmente un equipo.',
         action: 'Habla con Pulse',
+      },
+      story: {
+        items: [
+          {
+            eyebrow: 'Nuestra historia',
+            title: 'Empezamos con una pregunta sencilla: ¿por qué seguimos escuchando demasiado tarde?',
+            text: 'Pulse surge al observar una distancia repetida entre lo que viven las personas cada día y el momento en que una organización consigue entenderlo. Queremos acortar esa distancia con una escucha más frecuente, ligera y humana.',
+          },
+          {
+            eyebrow: 'Por qué nació Pulse',
+            title: 'Porque cuidar mejor requiere ver las señales antes de que se conviertan en problemas.',
+            text: 'Las encuestas puntuales y las conversaciones aisladas no siempre muestran la evolución real del equipo. Pulse nace para aportar continuidad, contexto y una visión compartida que ayude a actuar a tiempo.',
+          },
+        ],
+        note: 'La historia definitiva, la fecha de creación y las personas fundadoras están pendientes de validación con el cliente.',
       },
       purpose: {
         eyebrow: 'De dónde venimos',
@@ -458,6 +564,16 @@ export const messages = {
       manifesto:
         'Creemos que una señal pequeña, escuchada a tiempo, puede cambiar una conversación, una decisión y la experiencia de todo un equipo.',
       manifestoBy: 'La visión de Pulse',
+      wellbeing: {
+        eyebrow: 'Nuestra forma de entender el bienestar',
+        title: 'El bienestar no es una cifra aislada ni una campaña puntual.',
+        text: 'Es una realidad cambiante que se entiende mejor cuando se escucha con continuidad, privacidad y contexto.',
+        items: [
+          'Escuchar sin invadir el espacio de las personas.',
+          'Interpretar sin reducir la experiencia humana a un único número.',
+          'Acompañar decisiones que mejoren el día a día del equipo.',
+        ],
+      },
       values: {
         eyebrow: 'Misión, visión y valores',
         title: 'Un propósito que se convierte en una forma concreta de actuar.',
@@ -475,6 +591,12 @@ export const messages = {
             text: 'Rigor, confianza, privacidad y claridad para hacer útil la complejidad sin reducirla a un número.',
           },
         ],
+      },
+      team: {
+        eyebrow: 'El equipo',
+        title: 'Personas que combinan bienestar, metodología y producto.',
+        text: 'Este espacio está preparado para presentar al equipo de Pulse con una composición editorial, cercana y coherente con la identidad de la marca.',
+        note: '[Aquí se incorporarán las personas, cargos y fotografías aprobadas por el cliente.]',
       },
       audience: {
         eyebrow: 'Por qué Pulse',
@@ -554,11 +676,12 @@ export const messages = {
   ca: {
     common: {
       nav: {
-        methodology: 'Metodologia',
-        product: 'Producte',
-        company: 'Empresa',
+        home: 'Home',
+        methodology: 'Com treballem',
+        product: 'Què oferim',
+        company: 'Qui som',
         demo: 'Demana una demo',
-        dashboard: 'Accés dashboard',
+        dashboard: 'Accés clients',
       },
       language: {
         label: 'Canviar idioma',
@@ -574,7 +697,7 @@ export const messages = {
       actions: {
         demo: 'Demana una demo',
         discover: 'Descobreix-ne més',
-        product: 'Veure producte',
+        product: 'Veure què oferim',
         back: 'Tornar al formulari',
         backToTop: 'Tornar a dalt',
       },
@@ -664,11 +787,17 @@ export const messages = {
           },
         ],
       },
+      introduction: {
+        eyebrow: 'Som Pulse',
+        title: 'Escoltar millor canvia la manera de cuidar i decidir.',
+        text: 'Ajudem les empreses a entendre com està realment el seu equip, detectar senyals abans que es converteixin en problemes i prendre decisions amb una visió més clara.',
+        link: 'Coneix qui som',
+      },
       methodology: {
-        eyebrow: 'La metodologia Pulse',
+        eyebrow: 'Així treballem',
         title: 'Escoltem el teu equip. Detectem patrons.',
         accent: 'Et donem decisions clares.',
-        link: 'Descobreix la metodologia',
+        link: 'Coneix com treballem',
         steps: [
           {
             tag: "1. L'equip respon",
@@ -688,11 +817,11 @@ export const messages = {
         ],
       },
       product: {
-        eyebrow: 'Una lectura diferent',
+        eyebrow: 'Què oferim',
         title: 'No mesurem satisfacció. Mesurem estat emocional real.',
         intro:
           'Pulse redueix la distància entre el que viu l’equip i el que l’organització necessita saber per cuidar-lo.',
-        link: 'Explora el producte',
+        link: 'Descobreix què oferim',
         benefits: [
           {
             title: 'Recollida anònima.',
@@ -756,16 +885,39 @@ export const messages = {
     },
     methodology: {
       seo: {
-        title: 'Metodologia',
+        title: 'Com treballem',
         description:
-          'Descobreix com Pulse recull senyals anònims, detecta patrons emocionals i ofereix una visió agregada.',
+          'Així treballa Pulse per escoltar l’equip, detectar patrons i interpretar senyals que ajuden a decidir.',
       },
       hero: {
-        eyebrow: 'Metodologia',
-        title: 'No mesurem satisfacció.',
-        accent: 'Mesurem estat emocional real.',
+        eyebrow: 'Com treballem',
+        title: 'Així treballem per entendre com està',
+        accent: 'realment el teu equip.',
         description:
-          'Una metodologia d’escolta contínua que transforma respostes simples en una visió emocional útil, agregada i accionable.',
+          'Comencem escoltant de manera senzilla. Després convertim aquests senyals en una visió clara que ajuda a cuidar i decidir millor.',
+      },
+      process: {
+        eyebrow: 'Una manera senzilla d’escoltar',
+        title: 'Quatre passos per passar d’una resposta breu a una decisió amb context.',
+        text: 'L’experiència és lleugera per a l’equip i útil per a les persones que l’han d’acompanyar.',
+        steps: [
+          {
+            title: 'Escoltem',
+            text: 'L’equip respon en pocs segons, sense formularis llargs ni interrompre la jornada.',
+          },
+          {
+            title: 'Detectem',
+            text: 'Els senyals individuals i anònims es converteixen en patrons de l’equip, mai en perfils personals.',
+          },
+          {
+            title: 'Interpretem',
+            text: 'Pulse identifica tendències, canvis i possibles senyals d’alerta que convé observar.',
+          },
+          {
+            title: 'Ajudem a decidir',
+            text: 'RR. HH. rep informació clara per orientar converses, prioritats i decisions.',
+          },
+        ],
       },
       journey: {
         eyebrow: 'Tres moments, una visió',
@@ -857,17 +1009,78 @@ export const messages = {
     },
     product: {
       seo: {
-        title: 'Producte',
+        title: 'Què oferim',
         description:
-          'Coneix Pulse: participació simple, senyals anònims i visió agregada per a RR. HH. i lideratge.',
+          'Descobreix què rep la teva organització amb Pulse: escolta contínua, visió global, interpretació i implementació acompanyada.',
       },
       hero: {
-        eyebrow: 'Producte',
-        title: 'Menys soroll.',
-        accent: 'Més senyals que importen.',
+        eyebrow: 'Què oferim',
+        title: 'Tot el que necessites per entendre millor',
+        accent: 'com està el teu equip.',
         description:
-          'Pulse organitza l’estat emocional de l’equip en una experiència senzilla per a les persones i una lectura clara per a l’organització.',
-        action: 'Veure Pulse en una demo',
+          'Combinem una escolta senzilla per a les persones amb informació clara, interpretació i acompanyament per a l’organització.',
+        action: 'Descobrir-ho en una demo',
+      },
+      offer: {
+        eyebrow: 'El que rep la teva organització',
+        title: 'Una manera completa d’escoltar, comprendre i acompanyar.',
+        text: 'Pulse no és només una eina. És una experiència d’escolta contínua i una manera més clara de convertir senyals en decisions.',
+        groups: [
+          {
+            title: 'Escoltar sense fricció',
+            text: 'Una experiència accessible que facilita respostes honestes i freqüents.',
+            items: [
+              {
+                title: 'Escolta contínua',
+                text: 'Senyals freqüents per entendre l’evolució, no només una fotografia anual.',
+              },
+              {
+                title: 'Quiosc o tauleta',
+                text: 'Un punt de participació senzill que s’integra en el dia a dia de l’equip.',
+              },
+              {
+                title: 'Recollida anònima',
+                text: 'Respostes protegides i sense exposició individual.',
+              },
+            ],
+          },
+          {
+            title: 'Comprendre amb perspectiva',
+            text: 'La informació s’ordena per mostrar patrons sense perdre el context humà.',
+            items: [
+              {
+                title: 'Sense exposició individual',
+                text: 'L’organització observa el conjunt, no persones concretes.',
+              },
+              {
+                title: 'Visió global',
+                text: 'Una lectura compartida de l’estat i l’evolució de l’equip.',
+              },
+              {
+                title: 'Dashboard per a RR. HH.',
+                text: 'Tendències i possibles focus d’atenció reunits en un espai clar.',
+              },
+            ],
+          },
+          {
+            title: 'Passar a l’acció',
+            text: 'Acompanyament perquè les dades es converteixin en converses i decisions útils.',
+            items: [
+              {
+                title: 'Interpretació de dades',
+                text: 'Context per entendre què canvia, per què importa i què convé observar.',
+              },
+              {
+                title: 'Informes periòdics',
+                text: 'Resums d’evolució, patrons destacats i pròxims passos.',
+              },
+              {
+                title: 'Implementació i acompanyament',
+                text: 'Preparació, comunicació, posada en marxa i seguiment amb l’equip.',
+              },
+            ],
+          },
+        ],
       },
       showcase: {
         eyebrow: 'Visió global',
@@ -973,17 +1186,32 @@ export const messages = {
     },
     company: {
       seo: {
-        title: 'Empresa',
+        title: 'Qui som',
         description:
-          'Coneix la visió de Pulse: ajudar les organitzacions a escoltar abans, cuidar millor i decidir amb més context.',
+          'Coneix la història, el propòsit i la manera d’entendre el benestar que impulsa Pulse.',
       },
       hero: {
-        eyebrow: 'Empresa',
-        title: 'Equips més escoltats.',
-        accent: 'Organitzacions més conscients.',
+        eyebrow: 'Qui som',
+        title: 'Pulse neix per ajudar les empreses a escoltar millor les persones',
+        accent: 'que les fan créixer.',
         description:
-          'Pulse neix per escurçar la distància entre com se sent un equip i quan una organització aconsegueix veure-ho.',
+          'Som una iniciativa centrada a fer visible, de manera respectuosa i útil, com està realment un equip.',
         action: 'Parla amb Pulse',
+      },
+      story: {
+        items: [
+          {
+            eyebrow: 'La nostra història',
+            title: 'Vam començar amb una pregunta senzilla: per què continuem escoltant massa tard?',
+            text: 'Pulse sorgeix en observar una distància repetida entre el que viuen les persones cada dia i el moment en què una organització ho aconsegueix entendre. Volem escurçar aquesta distància amb una escolta més freqüent, lleugera i humana.',
+          },
+          {
+            eyebrow: 'Per què va néixer Pulse',
+            title: 'Perquè cuidar millor requereix veure els senyals abans que es converteixin en problemes.',
+            text: 'Les enquestes puntuals i les converses aïllades no sempre mostren l’evolució real de l’equip. Pulse neix per aportar continuïtat, context i una visió compartida que ajudi a actuar a temps.',
+          },
+        ],
+        note: 'La història definitiva, la data de creació i les persones fundadores estan pendents de validació amb el client.',
       },
       purpose: {
         eyebrow: 'D’on venim',
@@ -998,6 +1226,16 @@ export const messages = {
       manifesto:
         'Creiem que un senyal petit, escoltat a temps, pot canviar una conversa, una decisió i l’experiència de tot un equip.',
       manifestoBy: 'La visió de Pulse',
+      wellbeing: {
+        eyebrow: 'La nostra manera d’entendre el benestar',
+        title: 'El benestar no és una xifra aïllada ni una campanya puntual.',
+        text: 'És una realitat canviant que s’entén millor quan s’escolta amb continuïtat, privacitat i context.',
+        items: [
+          'Escoltar sense envair l’espai de les persones.',
+          'Interpretar sense reduir l’experiència humana a un únic número.',
+          'Acompanyar decisions que millorin el dia a dia de l’equip.',
+        ],
+      },
       values: {
         eyebrow: 'Missió, visió i valors',
         title: 'Un propòsit que es converteix en una manera concreta d’actuar.',
@@ -1015,6 +1253,12 @@ export const messages = {
             text: 'Rigor, confiança, privacitat i claredat per fer útil la complexitat sense reduir-la a un número.',
           },
         ],
+      },
+      team: {
+        eyebrow: 'L’equip',
+        title: 'Persones que combinen benestar, metodologia i producte.',
+        text: 'Aquest espai està preparat per presentar l’equip de Pulse amb una composició editorial, propera i coherent amb la identitat de la marca.',
+        note: '[Aquí s’incorporaran les persones, els càrrecs i les fotografies aprovades pel client.]',
       },
       audience: {
         eyebrow: 'Per què Pulse',
@@ -1094,11 +1338,12 @@ export const messages = {
   en: {
     common: {
       nav: {
-        methodology: 'Methodology',
-        product: 'Product',
-        company: 'Company',
+        home: 'Home',
+        methodology: 'How we work',
+        product: 'What we offer',
+        company: 'Who we are',
         demo: 'Book a demo',
-        dashboard: 'Dashboard access',
+        dashboard: 'Client access',
       },
       language: {
         label: 'Change language',
@@ -1114,7 +1359,7 @@ export const messages = {
       actions: {
         demo: 'Book a demo',
         discover: 'Discover more',
-        product: 'View product',
+        product: 'See what we offer',
         back: 'Back to the form',
         backToTop: 'Back to top',
       },
@@ -1204,11 +1449,17 @@ export const messages = {
           },
         ],
       },
+      introduction: {
+        eyebrow: 'We are Pulse',
+        title: 'Better listening changes how organisations care and decide.',
+        text: 'We help companies understand how their team is really doing, detect signals before they become problems and make decisions with a clearer view.',
+        link: 'Discover who we are',
+      },
       methodology: {
-        eyebrow: 'The Pulse methodology',
+        eyebrow: 'How we work',
         title: 'We listen to your team. We detect patterns.',
         accent: 'We give you clear decisions.',
-        link: 'Discover the methodology',
+        link: 'See how we work',
         steps: [
           {
             tag: '1. The team responds',
@@ -1228,11 +1479,11 @@ export const messages = {
         ],
       },
       product: {
-        eyebrow: 'A different perspective',
+        eyebrow: 'What we offer',
         title: 'We do not measure satisfaction. We measure real emotional state.',
         intro:
           'Pulse closes the gap between what teams experience and what organisations need to know to care for them.',
-        link: 'Explore the product',
+        link: 'Discover what we offer',
         benefits: [
           {
             title: 'Anonymous input.',
@@ -1296,16 +1547,39 @@ export const messages = {
     },
     methodology: {
       seo: {
-        title: 'Methodology',
+        title: 'How we work',
         description:
-          'Discover how Pulse collects anonymous signals, detects emotional patterns and provides aggregate insight.',
+          'See how Pulse listens to teams, detects patterns and interprets signals that support better decisions.',
       },
       hero: {
-        eyebrow: 'Methodology',
-        title: 'We do not measure satisfaction.',
-        accent: 'We measure real emotional state.',
+        eyebrow: 'How we work',
+        title: 'This is how we understand how your team is',
+        accent: 'really doing.',
         description:
-          'A continuous listening methodology that turns simple responses into useful, aggregate and actionable emotional insight.',
+          'We start by listening in a simple way. Then we turn those signals into a clear view that supports better care and decisions.',
+      },
+      process: {
+        eyebrow: 'A simple way to listen',
+        title: 'Four steps from a brief response to a decision with context.',
+        text: 'The experience is lightweight for the team and useful for the people supporting it.',
+        steps: [
+          {
+            title: 'We listen',
+            text: 'The team responds in a few seconds, without long forms or interrupting the working day.',
+          },
+          {
+            title: 'We detect',
+            text: 'Anonymous individual signals become team patterns, never personal profiles.',
+          },
+          {
+            title: 'We interpret',
+            text: 'Pulse identifies trends, changes and possible warning signs worth paying attention to.',
+          },
+          {
+            title: 'We help you decide',
+            text: 'HR receives clear information to guide conversations, priorities and decisions.',
+          },
+        ],
       },
       journey: {
         eyebrow: 'Three moments, one view',
@@ -1396,17 +1670,78 @@ export const messages = {
     },
     product: {
       seo: {
-        title: 'Product',
+        title: 'What we offer',
         description:
-          'Discover Pulse: simple participation, anonymous signals and aggregate insight for HR and leadership.',
+          'See what your organisation receives with Pulse: continuous listening, a global view, interpretation and supported implementation.',
       },
       hero: {
-        eyebrow: 'Product',
-        title: 'Less noise.',
-        accent: 'More signals that matter.',
+        eyebrow: 'What we offer',
+        title: 'Everything you need to better understand',
+        accent: 'how your team is doing.',
         description:
-          'Pulse organises team emotional state into a simple experience for people and a clear view for the organisation.',
-        action: 'See Pulse in a demo',
+          'We combine simple listening for people with clear information, interpretation and support for the organisation.',
+        action: 'Discover it in a demo',
+      },
+      offer: {
+        eyebrow: 'What your organisation receives',
+        title: 'A complete way to listen, understand and support.',
+        text: 'Pulse is more than a tool. It is a continuous listening experience and a clearer way to turn signals into decisions.',
+        groups: [
+          {
+            title: 'Listen without friction',
+            text: 'An accessible experience that supports honest and frequent responses.',
+            items: [
+              {
+                title: 'Continuous listening',
+                text: 'Frequent signals that reveal change, not just an annual snapshot.',
+              },
+              {
+                title: 'Kiosk or tablet',
+                text: 'A simple participation point that fits into the team’s working day.',
+              },
+              {
+                title: 'Anonymous collection',
+                text: 'Protected responses with no individual exposure.',
+              },
+            ],
+          },
+          {
+            title: 'Understand with perspective',
+            text: 'Information is organised to reveal patterns without losing the human context.',
+            items: [
+              {
+                title: 'No individual exposure',
+                text: 'The organisation sees the whole, not specific people.',
+              },
+              {
+                title: 'A global view',
+                text: 'A shared view of the team’s state and how it changes over time.',
+              },
+              {
+                title: 'Dashboard for HR',
+                text: 'Trends and possible areas of attention brought together clearly.',
+              },
+            ],
+          },
+          {
+            title: 'Move into action',
+            text: 'Support that helps turn data into useful conversations and decisions.',
+            items: [
+              {
+                title: 'Data interpretation',
+                text: 'Context to understand what is changing, why it matters and what to watch.',
+              },
+              {
+                title: 'Periodic reports',
+                text: 'Summaries of change, highlighted patterns and next steps.',
+              },
+              {
+                title: 'Implementation and support',
+                text: 'Preparation, communication, launch and follow-up with the team.',
+              },
+            ],
+          },
+        ],
       },
       showcase: {
         eyebrow: 'A global view',
@@ -1512,17 +1847,32 @@ export const messages = {
     },
     company: {
       seo: {
-        title: 'Company',
+        title: 'Who we are',
         description:
-          'Discover the Pulse vision: helping organisations listen earlier, care better and decide with more context.',
+          'Discover the story, purpose and view of wellbeing that drive Pulse.',
       },
       hero: {
-        eyebrow: 'Company',
-        title: 'Teams that feel heard.',
-        accent: 'Organisations that see clearly.',
+        eyebrow: 'Who we are',
+        title: 'Pulse was created to help companies listen better to the people',
+        accent: 'who make them grow.',
         description:
-          'Pulse was created to close the gap between how a team feels and when an organisation is able to see it.',
+          'We are focused on making how a team is really doing visible in a respectful and useful way.',
         action: 'Talk to Pulse',
+      },
+      story: {
+        items: [
+          {
+            eyebrow: 'Our story',
+            title: 'We started with a simple question: why do organisations still listen too late?',
+            text: 'Pulse began by observing the recurring gap between what people experience every day and when an organisation is able to understand it. We want to close that gap through listening that is more frequent, lightweight and human.',
+          },
+          {
+            eyebrow: 'Why Pulse was created',
+            title: 'Because better care requires seeing signals before they become problems.',
+            text: 'Occasional surveys and isolated conversations do not always reveal how a team is really changing. Pulse was created to provide continuity, context and a shared view that helps organisations act in time.',
+          },
+        ],
+        note: 'The final origin story, founding date and founders are pending client validation.',
       },
       purpose: {
         eyebrow: 'Where we come from',
@@ -1537,6 +1887,16 @@ export const messages = {
       manifesto:
         'We believe a small signal, heard in time, can change a conversation, a decision and the experience of an entire team.',
       manifestoBy: 'The Pulse vision',
+      wellbeing: {
+        eyebrow: 'How we understand wellbeing',
+        title: 'Wellbeing is not an isolated score or a one-off campaign.',
+        text: 'It is a changing reality that becomes clearer through continuous, private and contextual listening.',
+        items: [
+          'Listen without invading people’s space.',
+          'Interpret without reducing human experience to a single number.',
+          'Support decisions that improve the team’s everyday experience.',
+        ],
+      },
       values: {
         eyebrow: 'Mission, vision and values',
         title: 'A purpose translated into a concrete way of acting.',
@@ -1554,6 +1914,12 @@ export const messages = {
             text: 'Rigour, trust, privacy and clarity to make complexity useful without reducing it to a number.',
           },
         ],
+      },
+      team: {
+        eyebrow: 'The team',
+        title: 'People bringing together wellbeing, methodology and product.',
+        text: 'This space is ready to present the Pulse team through a close, editorial composition that fits the brand identity.',
+        note: '[Approved team members, roles and photography will be added here.]',
       },
       audience: {
         eyebrow: 'Why Pulse',

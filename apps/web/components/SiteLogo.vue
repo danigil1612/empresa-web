@@ -1,10 +1,19 @@
+<script setup lang="ts">
+const config = useRuntimeConfig()
+const logoPath = '/images/logo-pulse.svg'
+const hasApprovedLogo = computed(() => Boolean(config.public.hasApprovedLogo))
+</script>
+
 <template>
   <span class="brand" aria-label="Pulse">
-    <span class="brand__mark" aria-hidden="true">
-      <span />
-      <span />
-      <span />
-    </span>
-    <span class="brand__word">Pulse</span>
+    <img
+      v-if="hasApprovedLogo"
+      class="brand__image"
+      :src="logoPath"
+      alt=""
+      width="132"
+      height="34"
+    >
+    <span v-else class="brand__word">Pulse</span>
   </span>
 </template>

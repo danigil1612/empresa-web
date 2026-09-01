@@ -1,3 +1,9 @@
+import { existsSync } from 'node:fs'
+
+const hasApprovedLogo = existsSync(
+  new URL('./public/images/logo-pulse.svg', import.meta.url),
+)
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
@@ -8,6 +14,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       dashboardUrl: process.env.NUXT_PUBLIC_DASHBOARD_URL || '',
+      hasApprovedLogo,
     },
   },
   app: {
