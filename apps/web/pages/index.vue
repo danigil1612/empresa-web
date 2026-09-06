@@ -32,13 +32,6 @@ usePageSeo(
               {{ content.home.hero.how }}
             </NuxtLink>
           </div>
-          <div class="home-hero__trust">
-            <div v-for="item in content.home.hero.trust" :key="item.label">
-              <strong>{{ item.value }}</strong>
-              <span>{{ item.label }}</span>
-            </div>
-          </div>
-          <p class="placeholder-note">{{ content.home.hero.note }}</p>
         </div>
 
         <div v-reveal="120" class="home-hero__visual">
