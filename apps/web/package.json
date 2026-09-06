@@ -10,6 +10,8 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
+    "@fontsource-variable/outfit": "^5.3.0",
     "nuxt": "^3.18.1",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"

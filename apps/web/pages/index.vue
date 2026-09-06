@@ -1,5 +1,10 @@
 <script setup lang="ts">
 const { content } = usePulseI18n()
+const problemIcons = [
+  'fi-br-battery-quarter',
+  'fi-br-clock-three',
+  'fi-br-ear',
+]
 
 usePageSeo(
   () => content.value.home.seo.title,
@@ -10,8 +15,6 @@ usePageSeo(
 <template>
   <main id="main-content" tabindex="-1">
     <section class="home-hero">
-      <div class="home-hero__glow home-hero__glow--one" />
-      <div class="home-hero__glow home-hero__glow--two" />
       <div class="shell home-hero__grid">
         <div v-reveal class="home-hero__copy">
           <p class="eyebrow">{{ content.home.hero.eyebrow }}</p>
@@ -23,7 +26,7 @@ usePageSeo(
           <div class="hero-actions">
             <NuxtLink class="button button--primary" to="/demo">
               {{ content.common.actions.demo }}
-              <span aria-hidden="true">→</span>
+              <i class="fi fi-br-arrow-right" aria-hidden="true" />
             </NuxtLink>
             <NuxtLink class="button button--ghost" to="/como-trabajamos">
               {{ content.home.hero.how }}
@@ -39,15 +42,7 @@ usePageSeo(
         </div>
 
         <div v-reveal="120" class="home-hero__visual">
-          <div class="floating-label floating-label--top">
-            <span />
-            {{ content.home.hero.positive }}
-          </div>
-          <AppMockup />
-          <div class="floating-label floating-label--bottom">
-            <strong>↓ 12%</strong>
-            {{ content.home.hero.risk }}
-          </div>
+          <HeroScreens />
         </div>
       </div>
     </section>
@@ -67,7 +62,14 @@ usePageSeo(
             v-reveal="index * 90"
             class="problem-card"
           >
-            <span class="problem-card__number">{{ problem.number }}</span>
+            <div class="problem-card__topline">
+              <i
+                class="fi problem-card__icon"
+                :class="problemIcons[index]"
+                aria-hidden="true"
+              />
+              <span class="problem-card__number">{{ problem.number }}</span>
+            </div>
             <div>
               <h3>{{ problem.title }}</h3>
               <p>{{ problem.text }}</p>
@@ -87,7 +89,7 @@ usePageSeo(
           <p>{{ content.home.introduction.text }}</p>
           <NuxtLink class="text-link" to="/quienes-somos">
             {{ content.home.introduction.link }}
-            <span aria-hidden="true">→</span>
+            <i class="fi fi-br-arrow-right" aria-hidden="true" />
           </NuxtLink>
         </div>
       </div>
@@ -121,64 +123,8 @@ usePageSeo(
 
           <NuxtLink class="text-link text-link--light" to="/como-trabajamos">
             {{ content.home.methodology.link }}
-            <span aria-hidden="true">→</span>
+            <i class="fi fi-br-arrow-right" aria-hidden="true" />
           </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <section class="section product-section">
-      <div class="shell product-intro">
-        <div v-reveal class="section-heading">
-          <p class="eyebrow">{{ content.home.product.eyebrow }}</p>
-          <h2>{{ content.home.product.title }}</h2>
-          <p>{{ content.home.product.intro }}</p>
-          <NuxtLink class="text-link" to="/que-ofrecemos">
-            {{ content.home.product.link }}
-            <span aria-hidden="true">→</span>
-          </NuxtLink>
-        </div>
-
-        <div v-reveal="100" class="benefit-list">
-          <div
-            v-for="(benefit, index) in content.home.product.benefits"
-            :key="benefit.title"
-          >
-            <span class="benefit-list__mark">0{{ index + 1 }}</span>
-            <p>
-              <strong>{{ benefit.title }}</strong>
-              {{ benefit.text }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div v-reveal class="shell comparison-wrap">
-        <div class="comparison-title">
-          <p>{{ content.home.product.comparisonTitle }}</p>
-          <span>{{ content.home.product.comparisonAccent }}</span>
-        </div>
-        <div class="comparison-table" role="table" aria-label="Pulse">
-          <div class="comparison-row comparison-row--head" role="row">
-            <span
-              v-for="column in content.home.product.columns"
-              :key="column"
-              role="columnheader"
-            >
-              {{ column }}
-            </span>
-          </div>
-          <div
-            v-for="row in content.home.product.rows"
-            :key="row[0]"
-            class="comparison-row"
-            role="row"
-          >
-            <strong role="cell">{{ row[0] }}</strong>
-            <span role="cell">{{ row[1] }}</span>
-            <span role="cell">{{ row[2] }}</span>
-            <span class="comparison-row__pulse" role="cell">{{ row[3] }}</span>
-          </div>
         </div>
       </div>
     </section>
@@ -217,7 +163,7 @@ usePageSeo(
           >
             <summary>
               <span>{{ item.question }}</span>
-              <i aria-hidden="true" />
+              <i class="fi fi-br-plus-small" aria-hidden="true" />
             </summary>
             <p>{{ item.answer }}</p>
           </details>

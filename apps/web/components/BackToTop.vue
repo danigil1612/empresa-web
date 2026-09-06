@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
       :title="content.common.actions.backToTop"
       @click="scrollToTop"
     >
-      <span aria-hidden="true" />
+      <i class="fi fi-br-angle-up" aria-hidden="true" />
     </button>
   </Transition>
 </template>

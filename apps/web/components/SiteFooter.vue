@@ -37,6 +37,14 @@ const { content } = usePulseI18n()
     <div class="shell site-footer__bottom">
       <p>© {{ new Date().getFullYear() }} Pulse</p>
       <p>{{ content.common.footer.closing }}</p>
+      <a
+        class="site-footer__credit"
+        href="https://www.flaticon.com/uicons"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        UIcons by Flaticon
+      </a>
     </div>
   </footer>
 </template>

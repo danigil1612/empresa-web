@@ -15,8 +15,6 @@ function handleSubmit() {
 <template>
   <main id="main-content" tabindex="-1">
     <section class="demo-hero section">
-      <div class="demo-hero__glow demo-hero__glow--one" />
-      <div class="demo-hero__glow demo-hero__glow--two" />
       <div class="shell demo-grid">
         <div v-reveal class="demo-copy">
           <p class="eyebrow">{{ content.demo.hero.eyebrow }}</p>
@@ -116,14 +114,17 @@ function handleSubmit() {
 
               <button class="button button--primary button--wide" type="submit">
                 {{ content.demo.form.submit }}
-                <span aria-hidden="true">→</span>
+                <i class="fi fi-br-arrow-right" aria-hidden="true" />
               </button>
               <p class="demo-form__note">{{ content.demo.form.note }}</p>
             </form>
           </div>
 
           <div v-else class="demo-success" role="status">
-            <span class="demo-success__mark">✓</span>
+            <i
+              class="fi fi-br-check demo-success__mark"
+              aria-hidden="true"
+            />
             <p class="eyebrow">{{ content.demo.success.eyebrow }}</p>
             <h2>{{ content.demo.success.title }}</h2>
             <p>{{ content.demo.success.text }}</p>
