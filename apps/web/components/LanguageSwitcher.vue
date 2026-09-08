@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
       @keydown.up.prevent="openAndFocus(localeOptions.length - 1)"
     >
       <span>{{ activeLocale.short }}</span>
-      <i aria-hidden="true" />
+      <i class="fi fi-br-angle-small-down" aria-hidden="true" />
     </button>
 
     <div

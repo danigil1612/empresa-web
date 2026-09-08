@@ -40,8 +40,6 @@ function leaveErrorPage(path: string) {
     </a>
     <SiteHeader />
     <main id="main-content" class="error-page" tabindex="-1">
-      <div class="error-page__glow error-page__glow--one" />
-      <div class="error-page__glow error-page__glow--two" />
       <div class="shell error-page__inner">
         <div class="error-page__code" aria-hidden="true">
           {{ error.statusCode || '—' }}

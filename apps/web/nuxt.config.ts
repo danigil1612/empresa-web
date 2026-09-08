@@ -10,7 +10,11 @@ export default defineNuxtConfig({
   experimental: {
     appManifest: false,
   },
-  css: ['~/assets/css/main.css'],
+  css: [
+    '@fontsource-variable/outfit',
+    '@flaticon/flaticon-uicons/css/bold/rounded.css',
+    '~/assets/css/main.css',
+  ],
   runtimeConfig: {
     public: {
       dashboardUrl: process.env.NUXT_PUBLIC_DASHBOARD_URL || '',
@@ -30,22 +34,7 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'theme-color',
-          content: '#0c4148',
-        },
-      ],
-      link: [
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.googleapis.com',
-        },
-        {
-          rel: 'preconnect',
-          href: 'https://fonts.gstatic.com',
-          crossorigin: 'anonymous',
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap',
+          content: '#0e2a2d',
         },
       ],
     },

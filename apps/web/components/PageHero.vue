@@ -9,8 +9,6 @@ defineProps<{
 
 <template>
   <section class="page-hero section">
-    <div class="page-hero__glow page-hero__glow--one" />
-    <div class="page-hero__glow page-hero__glow--two" />
     <div v-reveal class="shell page-hero__inner">
       <p class="eyebrow">{{ eyebrow }}</p>
       <h1>{{ title }} <span>{{ accent }}</span></h1>

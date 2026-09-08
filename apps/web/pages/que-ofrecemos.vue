@@ -56,7 +56,7 @@ usePageSeo(
       <template #actions>
         <NuxtLink class="button button--primary" to="/demo">
           {{ content.product.hero.action }}
-          <span aria-hidden="true">→</span>
+          <i class="fi fi-br-arrow-right" aria-hidden="true" />
         </NuxtLink>
       </template>
     </PageHero>

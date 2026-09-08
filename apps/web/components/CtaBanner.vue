@@ -15,15 +15,13 @@ const text = computed(() => props.text ?? content.value.common.cta.text)
   <section class="section section--cta">
     <div class="shell">
       <div class="cta-banner">
-        <div class="cta-banner__orb cta-banner__orb--one" />
-        <div class="cta-banner__orb cta-banner__orb--two" />
         <div v-reveal class="cta-banner__content">
           <p class="eyebrow eyebrow--light">{{ eyebrow }}</p>
           <h2>{{ title }}</h2>
           <p>{{ text }}</p>
           <NuxtLink class="button button--light" to="/demo">
             {{ content.common.actions.demo }}
-            <span aria-hidden="true">→</span>
+            <i class="fi fi-br-arrow-right" aria-hidden="true" />
           </NuxtLink>
         </div>
       </div>

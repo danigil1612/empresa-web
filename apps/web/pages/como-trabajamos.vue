@@ -24,7 +24,7 @@ usePageSeo(
       <template #actions>
         <NuxtLink class="button button--primary" to="/demo">
           {{ content.common.actions.demo }}
-          <span aria-hidden="true">→</span>
+          <i class="fi fi-br-arrow-right" aria-hidden="true" />
         </NuxtLink>
         <NuxtLink class="button button--ghost" to="/que-ofrecemos">
           {{ content.common.nav.product }}
