@@ -1,6 +1,12 @@
 <script setup lang="ts">
 const { content } = usePulseI18n()
 const activeMoodIndex = ref(1)
+const principleIcons = [
+  'fi-br-feather',
+  'fi-br-shield-check',
+  'fi-br-refresh',
+  'fi-br-bullseye-arrow',
+]
 const activeMood = computed(
   () =>
     content.value.methodology.model.quadrants[activeMoodIndex.value] ??
@@ -17,6 +23,7 @@ usePageSeo(
   <main id="main-content" tabindex="-1">
     <PageHero
       :eyebrow="content.methodology.hero.eyebrow"
+      eyebrow-target="#proceso"
       :title="content.methodology.hero.title"
       :accent="content.methodology.hero.accent"
       :description="content.methodology.hero.description"
@@ -24,15 +31,16 @@ usePageSeo(
       <template #actions>
         <NuxtLink class="button button--primary" to="/demo">
           {{ content.common.actions.demo }}
-          <i class="fi fi-br-arrow-right" aria-hidden="true" />
+          <AnimatedArrowIcon />
         </NuxtLink>
         <NuxtLink class="button button--ghost" to="/que-ofrecemos">
           {{ content.common.nav.product }}
+          <AnimatedArrowIcon />
         </NuxtLink>
       </template>
     </PageHero>
 
-    <section class="section work-process-section">
+    <section id="proceso" class="section work-process-section">
       <div class="shell">
         <div v-reveal class="section-heading section-heading--center">
           <p class="eyebrow">{{ content.methodology.process.eyebrow }}</p>
@@ -107,7 +115,14 @@ usePageSeo(
             :key="item.title"
             v-reveal="index * 80"
           >
-            <span>0{{ index + 1 }}</span>
+            <div class="principles-grid__topline">
+              <i
+                class="fi principles-grid__icon"
+                :class="principleIcons[index]"
+                aria-hidden="true"
+              />
+              <span>0{{ index + 1 }}</span>
+            </div>
             <h3>{{ item.title }}</h3>
             <p>{{ item.text }}</p>
           </article>
@@ -117,22 +132,26 @@ usePageSeo(
 
     <section class="section validation-section">
       <div class="shell validation-panel">
-        <div v-reveal class="section-heading">
+        <div v-reveal class="section-heading validation-panel__intro">
           <p class="eyebrow eyebrow--light">
             {{ content.methodology.validation.eyebrow }}
           </p>
           <h2>{{ content.methodology.validation.title }}</h2>
           <p>{{ content.methodology.validation.text }}</p>
         </div>
-        <div class="validation-list">
-          <div
+        <div class="validation-list validation-list--detailed">
+          <article
             v-for="(item, index) in content.methodology.validation.items"
-            :key="item"
+            :key="item.label"
             v-reveal="index * 80"
           >
-            <span>0{{ index + 1 }}</span>
-            <p>{{ item }}</p>
-          </div>
+            <div class="validation-list__meta">
+              <span>0{{ index + 1 }}</span>
+              <p>{{ item.label }}</p>
+            </div>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.text }}</p>
+          </article>
         </div>
       </div>
     </section>

@@ -104,7 +104,7 @@ onBeforeUnmount(() => {
       @keydown.up.prevent="openAndFocus(localeOptions.length - 1)"
     >
       <span>{{ activeLocale.short }}</span>
-      <i class="fi fi-br-angle-small-down" aria-hidden="true" />
+      <AnimatedArrowIcon direction="down" :size="14" />
     </button>
 
     <div

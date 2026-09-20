@@ -1,10 +1,20 @@
 <script setup lang="ts">
-const { content } = usePulseI18n()
+import { faqMessages } from '~/i18n/faq'
+
+const { content, locale } = usePulseI18n()
 const problemIcons = [
   'fi-br-battery-quarter',
   'fi-br-clock-three',
   'fi-br-ear',
 ]
+const faq = computed(() => faqMessages[locale.value])
+const faqCategories = computed(() =>
+  faq.value.sections.map((section) => ({
+    id: section.id,
+    label: section.title,
+    items: section.items,
+  })),
+)
 
 usePageSeo(
   () => content.value.home.seo.title,
@@ -26,11 +36,22 @@ usePageSeo(
           <div class="hero-actions">
             <NuxtLink class="button button--primary" to="/demo">
               {{ content.common.actions.demo }}
-              <i class="fi fi-br-arrow-right" aria-hidden="true" />
+              <AnimatedArrowIcon />
             </NuxtLink>
             <NuxtLink class="button button--ghost" to="/como-trabajamos">
               {{ content.home.hero.how }}
+              <AnimatedArrowIcon />
             </NuxtLink>
+          </div>
+          <div class="hero-metrics" aria-label="Pulse">
+            <div
+              v-for="metric in content.home.hero.metrics"
+              :key="metric.label"
+              class="hero-metrics__item"
+            >
+              <strong>{{ metric.value }}</strong>
+              <span>{{ metric.label }}</span>
+            </div>
           </div>
         </div>
 
@@ -45,7 +66,9 @@ usePageSeo(
         <div v-reveal class="section-heading section-heading--center">
           <p class="eyebrow">{{ content.home.problem.eyebrow }}</p>
           <h2>{{ content.home.problem.title }}</h2>
-          <p>{{ content.home.problem.intro }}</p>
+          <p v-if="content.home.problem.intro">
+            {{ content.home.problem.intro }}
+          </p>
         </div>
 
         <div class="problem-grid">
@@ -82,7 +105,7 @@ usePageSeo(
           <p>{{ content.home.introduction.text }}</p>
           <NuxtLink class="text-link" to="/quienes-somos">
             {{ content.home.introduction.link }}
-            <i class="fi fi-br-arrow-right" aria-hidden="true" />
+            <AnimatedArrowIcon :size="18" />
           </NuxtLink>
         </div>
       </div>
@@ -90,7 +113,7 @@ usePageSeo(
 
     <section class="section methodology-section">
       <div class="shell">
-        <div class="method-panel">
+        <div v-reveal class="method-panel method-panel--immersive">
           <div v-reveal class="method-panel__heading">
             <p class="eyebrow eyebrow--light">
               {{ content.home.methodology.eyebrow }}
@@ -116,7 +139,7 @@ usePageSeo(
 
           <NuxtLink class="text-link text-link--light" to="/como-trabajamos">
             {{ content.home.methodology.link }}
-            <i class="fi fi-br-arrow-right" aria-hidden="true" />
+            <AnimatedArrowIcon :size="18" />
           </NuxtLink>
         </div>
       </div>
@@ -143,24 +166,18 @@ usePageSeo(
     </section>
 
     <section class="section faq-section">
-      <div class="shell faq-grid">
-        <div v-reveal class="section-heading">
-          <p class="eyebrow">{{ content.home.faq.eyebrow }}</p>
-          <h2>{{ content.home.faq.title }}</h2>
+      <div class="shell">
+        <div v-reveal class="section-heading faq-section__heading">
+          <p class="eyebrow">{{ faq.eyebrow }}</p>
+          <h2>{{ faq.title }}</h2>
+          <p>{{ faq.intro }}</p>
         </div>
-        <div v-reveal="100" class="faq-list">
-          <details
-            v-for="(item, index) in content.home.faq.items"
-            :key="item.question"
-            :open="index === 0"
-          >
-            <summary>
-              <span>{{ item.question }}</span>
-              <i class="fi fi-br-plus-small" aria-hidden="true" />
-            </summary>
-            <p>{{ item.answer }}</p>
-          </details>
-        </div>
+        <FaqExplorer
+          v-reveal="100"
+          :categories="faqCategories"
+          :aria-label="faq.title"
+          initial-category-id="about"
+        />
       </div>
     </section>
 

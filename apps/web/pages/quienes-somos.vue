@@ -11,6 +11,7 @@ usePageSeo(
   <main id="main-content" tabindex="-1">
     <PageHero
       :eyebrow="content.company.hero.eyebrow"
+      eyebrow-target="#historia"
       :title="content.company.hero.title"
       :accent="content.company.hero.accent"
       :description="content.company.hero.description"
@@ -18,12 +19,12 @@ usePageSeo(
       <template #actions>
         <NuxtLink class="button button--primary" to="/demo">
           {{ content.company.hero.action }}
-          <i class="fi fi-br-arrow-right" aria-hidden="true" />
+          <AnimatedArrowIcon />
         </NuxtLink>
       </template>
     </PageHero>
 
-    <section class="section company-story image-ready-section">
+    <section id="historia" class="section company-story image-ready-section">
       <div class="shell company-story__grid">
         <article
           v-for="(item, index) in content.company.story.items"
@@ -92,19 +93,6 @@ usePageSeo(
             <p>{{ value.text }}</p>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section team-section image-ready-section">
-      <div class="shell team-stage">
-        <div v-reveal class="team-stage__copy">
-          <p class="eyebrow">{{ content.company.team.eyebrow }}</p>
-          <h2>{{ content.company.team.title }}</h2>
-          <p>{{ content.company.team.text }}</p>
-        </div>
-        <p v-reveal="100" class="placeholder-note team-stage__placeholder">
-          {{ content.company.team.note }}
-        </p>
       </div>
     </section>
 
