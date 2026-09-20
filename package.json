@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
     "build": "npm --prefix apps/web run build",
+    "generate": "npm --prefix apps/web run generate",
     "preview": "npm --prefix apps/web run preview",
     "format": "echo \"Configurar Prettier més endavant\"",
     "lint": "echo \"Configurar ESLint més endavant\""
