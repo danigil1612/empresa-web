@@ -362,21 +362,33 @@ h3 {
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   transform: translate3d(0, 0, 0);
+  animation: header-arrival 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
   transition:
-    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 220ms ease,
     border-color 220ms ease,
     box-shadow 220ms ease;
 }
 
-.site-header--hidden {
-  transform: translate3d(0, calc(-100% - 2px), 0);
+@keyframes header-arrival {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .site-header--scrolled {
   border-bottom-color: rgba(24, 72, 80, 0.12);
   background: rgba(248, 251, 251, 0.94);
   box-shadow: 0 12px 32px rgba(24, 72, 80, 0.08);
+}
+
+.site-header--scrolled .site-header__inner {
+  min-height: 68px;
 }
 
 .site-header--menu-open {
@@ -410,6 +422,7 @@ h3 {
   align-items: center;
   justify-content: space-between;
   gap: 32px;
+  transition: min-height 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header__logo {

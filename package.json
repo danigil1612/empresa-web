@@ -5,7 +5,7 @@
   "description": "Web corporativa de Pulse amb accés extern per a clients",
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
-    "build": "npm --prefix apps/web run build",
+    "build": "npm --prefix apps/web run generate",
     "generate": "npm --prefix apps/web run generate",
     "preview": "npm --prefix apps/web run preview",
     "format": "echo \"Configurar Prettier més endavant\"",
