@@ -1,12 +1,30 @@
 <script setup lang="ts">
-const { content } = usePulseI18n()
+const { content, locale } = usePulseI18n()
+const dashboardImage = computed(() =>
+  locale.value === 'es'
+    ? '/dashboard-distribucion-emociones.jpg'
+    : `/dashboard-distribucion-emociones-${locale.value}.png`,
+)
 const activeTab = ref(0)
+const openOfferGroups = ref(new Set<number>())
 const tabList = ref<HTMLElement | null>(null)
 const activeDetail = computed(
   () =>
     content.value.product.detail.tabs[activeTab.value] ??
     content.value.product.detail.tabs[0],
 )
+
+function toggleOfferGroup(groupIndex: number) {
+  const nextOpenGroups = new Set(openOfferGroups.value)
+
+  if (nextOpenGroups.has(groupIndex)) {
+    nextOpenGroups.delete(groupIndex)
+  } else {
+    nextOpenGroups.add(groupIndex)
+  }
+
+  openOfferGroups.value = nextOpenGroups
+}
 
 function getTabButtons() {
   return Array.from(
@@ -76,18 +94,37 @@ usePageSeo(
             :key="group.title"
             v-reveal="groupIndex * 90"
             class="offer-group"
+            :data-open="openOfferGroups.has(groupIndex)"
           >
             <div class="offer-group__intro">
               <span>0{{ groupIndex + 1 }}</span>
               <h3>{{ group.title }}</h3>
               <p>{{ group.text }}</p>
             </div>
-            <ul>
-              <li v-for="item in group.items" :key="item.title">
-                <strong>{{ item.title }}</strong>
-                <span>{{ item.text }}</span>
-              </li>
-            </ul>
+            <div class="offer-group__panel">
+              <button
+                class="offer-group__toggle"
+                type="button"
+                :aria-label="group.title"
+                :aria-expanded="openOfferGroups.has(groupIndex)"
+                :aria-controls="`offer-group-detail-${groupIndex}`"
+                @click="toggleOfferGroup(groupIndex)"
+              >
+                <span class="offer-group__arrow" aria-hidden="true">
+                  <AnimatedArrowIcon :size="22" />
+                </span>
+              </button>
+              <ul
+                :id="`offer-group-detail-${groupIndex}`"
+                class="offer-group__panel-content"
+                :aria-hidden="!openOfferGroups.has(groupIndex)"
+              >
+                <li v-for="item in group.items" :key="item.title">
+                  <strong>{{ item.title }}</strong>
+                  <span>{{ item.text }}</span>
+                </li>
+              </ul>
+            </div>
           </article>
         </div>
       </div>
@@ -106,7 +143,15 @@ usePageSeo(
           </ul>
         </div>
         <div v-reveal="120" class="product-showcase__visual">
-          <AppMockup />
+          <img
+            class="product-showcase__dashboard"
+            :src="dashboardImage"
+            :alt="content.product.showcase.visualAlt"
+            width="3872"
+            height="2225"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
