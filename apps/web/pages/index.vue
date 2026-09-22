@@ -222,7 +222,9 @@ usePageSeo(
                   <small>{{ item.title }}</small>
                   <strong>{{ item.subtitle }}</strong>
                 </span>
-                <span class="trust-list__toggle" aria-hidden="true">+</span>
+                <span class="trust-list__toggle" aria-hidden="true">
+                  <AnimatedDisclosureIcon :size="22" />
+                </span>
               </summary>
               <div class="trust-list__body">
                 <p>{{ item.detail }}</p>

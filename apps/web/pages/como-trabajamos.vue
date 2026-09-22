@@ -201,7 +201,9 @@ usePageSeo(
               <summary>
                 <span>0{{ index + 1 }}</span>
                 <strong>{{ item.label }}</strong>
-                <span class="validation-list__toggle" aria-hidden="true">+</span>
+                <span class="validation-list__toggle" aria-hidden="true">
+                  <AnimatedDisclosureIcon :size="22" />
+                </span>
               </summary>
               <div class="validation-list__body">
                 <p>{{ item.text }}</p>

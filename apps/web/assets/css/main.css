@@ -11,7 +11,6 @@
   --white: #e9f3f4;
   --canvas: #e9f3f4;
   --canvas-gradient: linear-gradient(120deg, #e9f3f4 0%, #f6fafb 50%, #e9f3f4 100%);
-  --petrol-gradient: linear-gradient(120deg, #0b2528 0%, #0e2a2d 50%, #0b2528 100%);
   --surface: var(--canvas);
   --surface-coral: var(--canvas);
   --border: rgba(24, 72, 80, 0.16);
@@ -609,7 +608,7 @@ h3 {
   height: 2px;
   border-radius: 99px;
   background: var(--ink);
-  transition: transform 180ms ease;
+  transition: top 240ms cubic-bezier(0.22, 1, 0.36, 1), transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .menu-button span:first-child {
@@ -1129,6 +1128,12 @@ h3 {
 .problem-card__icon {
   color: var(--coral);
   font-size: 1.8rem;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.problem-card:hover .problem-card__icon,
+.problem-card:focus-visible .problem-card__icon {
+  transform: translateY(-3px) rotate(-8deg) scale(1.1);
 }
 
 .problem-card__number {
@@ -1221,16 +1226,9 @@ h3 {
   --theme-reveal-inset: max(24px, calc((100% - 1180px) / 2));
   --theme-reveal-radius: 36px;
 
-  background-color: var(--ink-deep);
-  background-image:
-    linear-gradient(to bottom, transparent calc(100% - 120px), #0b2528 100%),
-    var(--petrol-gradient);
-  background-size: 100% 100%, 200% 200%;
-  animation: ambient-shift 18s ease-in-out infinite alternate;
+  background: var(--ink-deep);
   color: var(--paper);
   clip-path: inset(0 var(--theme-reveal-inset) 0 round var(--theme-reveal-radius));
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 84px);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 84px);
   transition: clip-path 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -1709,16 +1707,71 @@ h3 {
 
 .trust-list__toggle,
 .validation-list__toggle {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
   justify-self: end;
+  border: 1px solid rgba(233, 243, 244, 0.2);
+  border-radius: 50%;
   color: var(--coral);
-  font-size: 1.6rem;
-  font-weight: 300;
-  transition: transform 220ms ease;
+  transition: background-color 260ms ease, border-color 260ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.trust-list summary:hover .trust-list__toggle,
+.trust-list summary:focus-visible .trust-list__toggle,
 .trust-list details[open] .trust-list__toggle,
+.validation-list--accordion summary:hover .validation-list__toggle,
+.validation-list--accordion summary:focus-visible .validation-list__toggle,
 .validation-list--accordion details[open] .validation-list__toggle {
-  transform: rotate(45deg);
+  border-color: rgba(243, 126, 117, 0.55);
+  background: rgba(243, 126, 117, 0.12);
+  transform: scale(1.08);
+}
+
+.trust-list summary:active .trust-list__toggle,
+.validation-list--accordion summary:active .validation-list__toggle {
+  transform: scale(0.92);
+}
+
+.trust-list details[open] .animated-disclosure-icon,
+.validation-list--accordion details[open] .animated-disclosure-icon {
+  transform: rotate(180deg);
+}
+
+.trust-list details[open] .animated-disclosure-icon__line--vertical,
+.validation-list--accordion details[open] .animated-disclosure-icon__line--vertical {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.trust-list details:not([open]) summary:hover .animated-disclosure-icon,
+.trust-list details:not([open]) summary:focus-visible .animated-disclosure-icon,
+.validation-list--accordion details:not([open]) summary:hover .animated-disclosure-icon,
+.validation-list--accordion details:not([open]) summary:focus-visible .animated-disclosure-icon {
+  transform: rotate(16deg) scale(1.1);
+}
+
+.trust-list summary:active .animated-disclosure-icon,
+.validation-list--accordion summary:active .animated-disclosure-icon {
+  transform: scale(0.9);
+}
+
+.trust-list details[open] .trust-list__body,
+.validation-list--accordion details[open] .validation-list__body {
+  animation: disclosure-enter 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes disclosure-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .trust-list__body {
@@ -3598,12 +3651,7 @@ h3 {
 .site-footer {
   margin-top: 50px;
   padding: 84px 0 26px;
-  background-color: var(--ink-deep);
-  background-image:
-    linear-gradient(to bottom, #0b2528 0, transparent 120px),
-    var(--petrol-gradient);
-  background-size: 100% 100%, 200% 200%;
-  animation: ambient-shift 18s ease-in-out infinite alternate;
+  background: var(--ink-deep);
   color: var(--white);
 }
 

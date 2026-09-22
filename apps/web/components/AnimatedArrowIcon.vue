@@ -44,14 +44,16 @@ onMounted(() => {
     aria-hidden="true"
     focusable="false"
   >
-    <g class="animated-arrow-icon__glyph">
+    <g>
       <path
+        class="animated-arrow-icon__shaft"
         d="M3.75 10H16.25"
         stroke="currentColor"
         stroke-width="1.8"
         stroke-linecap="round"
       />
       <path
+        class="animated-arrow-icon__head"
         d="M11.5 5.25L16.25 10L11.5 14.75"
         stroke="currentColor"
         stroke-width="1.8"
@@ -68,6 +70,7 @@ onMounted(() => {
   flex: 0 0 auto;
   overflow: visible;
   vertical-align: middle;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .animated-arrow-icon--down {
@@ -82,35 +85,53 @@ onMounted(() => {
   transform: rotate(-90deg);
 }
 
-.animated-arrow-icon__glyph {
-  transform-origin: center;
-  transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+.animated-arrow-icon__shaft,
+.animated-arrow-icon__head {
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:global(:is(button, a[href], [role='button']):hover)
-  .animated-arrow-icon__glyph,
-:global(:is(button, a[href], [role='button']):focus-visible)
-  .animated-arrow-icon__glyph {
-  transform: translateX(2.5px);
+.animated-arrow-icon__shaft {
+  transform-box: fill-box;
+  transform-origin: right center;
 }
 
-:global(:is(button, a[href], [role='button']):active)
-  .animated-arrow-icon__glyph {
+:global(button[aria-expanded='true'] .animated-arrow-icon--down) {
+  transform: rotate(-90deg);
+}
+
+:global(:is(button, a[href], [role='button']):hover .animated-arrow-icon__shaft),
+:global(:is(button, a[href], [role='button']):focus-visible .animated-arrow-icon__shaft) {
+  transform: scaleX(1.18) translateX(1px);
+}
+
+:global(:is(button, a[href], [role='button']):hover .animated-arrow-icon__head),
+:global(:is(button, a[href], [role='button']):focus-visible .animated-arrow-icon__head) {
+  transform: translateX(3px);
+}
+
+:global(:is(button, a[href], [role='button']):active .animated-arrow-icon__shaft) {
+  transform: scaleX(0.94);
+  transition-duration: 100ms;
+}
+
+:global(:is(button, a[href], [role='button']):active .animated-arrow-icon__head) {
   transform: translateX(1px);
-  transition-duration: 90ms;
+  transition-duration: 100ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animated-arrow-icon__glyph {
+  .animated-arrow-icon,
+  .animated-arrow-icon__shaft,
+  .animated-arrow-icon__head {
     transition: none;
   }
 
-  :global(:is(button, a[href], [role='button']):hover)
-    .animated-arrow-icon__glyph,
-  :global(:is(button, a[href], [role='button']):focus-visible)
-    .animated-arrow-icon__glyph,
-  :global(:is(button, a[href], [role='button']):active)
-    .animated-arrow-icon__glyph {
+  :global(:is(button, a[href], [role='button']):hover .animated-arrow-icon__shaft),
+  :global(:is(button, a[href], [role='button']):focus-visible .animated-arrow-icon__shaft),
+  :global(:is(button, a[href], [role='button']):active .animated-arrow-icon__shaft),
+  :global(:is(button, a[href], [role='button']):hover .animated-arrow-icon__head),
+  :global(:is(button, a[href], [role='button']):focus-visible .animated-arrow-icon__head),
+  :global(:is(button, a[href], [role='button']):active .animated-arrow-icon__head) {
     transform: none;
   }
 }
