@@ -1,6 +1,8 @@
 <script setup lang="ts">
 const { content } = usePulseI18n()
+const activeProcessIndex = ref(0)
 const activeMoodIndex = ref(1)
+const methodologyDarkRef = useScrollThemeReveal()
 const principleIcons = [
   'fi-br-feather',
   'fi-br-shield-check',
@@ -12,6 +14,25 @@ const activeMood = computed(
     content.value.methodology.model.quadrants[activeMoodIndex.value] ??
     content.value.methodology.model.quadrants[0],
 )
+const activeProcess = computed(
+  () => content.value.methodology.process.steps[activeProcessIndex.value] ??
+    content.value.methodology.process.steps[0],
+)
+
+function selectProcessStep(index: number, event: MouseEvent) {
+  activeProcessIndex.value = index
+
+  if (window.matchMedia('(max-width: 820px)').matches) {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const target = event.currentTarget as HTMLElement
+
+    target.scrollIntoView({
+      behavior: reduceMotion ? 'auto' : 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  }
+}
 
 usePageSeo(
   () => content.value.methodology.seo.title,
@@ -20,7 +41,7 @@ usePageSeo(
 </script>
 
 <template>
-  <main id="main-content" tabindex="-1">
+  <main id="main-content" class="methodology-page" tabindex="-1">
     <PageHero
       :eyebrow="content.methodology.hero.eyebrow"
       eyebrow-target="#proceso"
@@ -48,18 +69,50 @@ usePageSeo(
           <p>{{ content.methodology.process.text }}</p>
         </div>
 
-        <div class="work-process">
-          <article
+        <div class="work-process" :aria-label="content.methodology.process.eyebrow">
+          <button
             v-for="(step, index) in content.methodology.process.steps"
             :key="step.title"
-            v-reveal="index * 80"
+            type="button"
+            class="work-process__tab"
+            :class="{ 'is-active': activeProcessIndex === index }"
+            :aria-pressed="activeProcessIndex === index"
+            aria-controls="work-process-detail"
+            @click="selectProcessStep(index, $event)"
           >
             <span>0{{ index + 1 }}</span>
-            <div>
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.text }}</p>
+            {{ step.title }}
+          </button>
+        </div>
+
+        <div id="work-process-detail" class="work-process__detail">
+          <Transition name="work-process-switch" mode="out-in">
+            <div :key="activeProcessIndex" class="work-process__copy" aria-live="polite">
+              <span class="work-process__number">0{{ activeProcessIndex + 1 }}</span>
+              <h3>{{ activeProcess?.title }}</h3>
+              <p>{{ activeProcess?.text }}</p>
             </div>
-          </article>
+          </Transition>
+
+          <div class="work-process__visual" aria-hidden="true">
+            <div class="work-process__visual-top">
+              <span>Pulse</span>
+              <span>0{{ activeProcessIndex + 1 }} / 04</span>
+            </div>
+            <div class="work-process__visual-center">
+              <span class="work-process__visual-ring" />
+              <Transition name="work-process-switch" mode="out-in">
+                <strong :key="activeProcessIndex">0{{ activeProcessIndex + 1 }}</strong>
+              </Transition>
+            </div>
+            <div class="work-process__visual-rail">
+              <span
+                v-for="(_, index) in content.methodology.process.steps"
+                :key="index"
+                :class="{ 'is-active': index <= activeProcessIndex }"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -130,35 +183,37 @@ usePageSeo(
       </div>
     </section>
 
-    <section class="section validation-section">
-      <div class="shell validation-panel">
-        <div v-reveal class="section-heading validation-panel__intro">
-          <p class="eyebrow eyebrow--light">
-            {{ content.methodology.validation.eyebrow }}
-          </p>
-          <h2>{{ content.methodology.validation.title }}</h2>
-          <p>{{ content.methodology.validation.text }}</p>
+    <div ref="methodologyDarkRef" class="scroll-theme-reveal methodology-dark">
+      <section class="section validation-section">
+        <div class="shell validation-panel">
+          <div v-reveal class="section-heading validation-panel__intro">
+            <p class="eyebrow eyebrow--light">
+              {{ content.methodology.validation.eyebrow }}
+            </p>
+            <h2>{{ content.methodology.validation.title }}</h2>
+            <p>{{ content.methodology.validation.text }}</p>
+          </div>
+          <div class="validation-list validation-list--detailed">
+            <article
+              v-for="(item, index) in content.methodology.validation.items"
+              :key="item.label"
+              v-reveal="index * 80"
+            >
+              <div class="validation-list__meta">
+                <span>0{{ index + 1 }}</span>
+                <p>{{ item.label }}</p>
+              </div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+          </div>
         </div>
-        <div class="validation-list validation-list--detailed">
-          <article
-            v-for="(item, index) in content.methodology.validation.items"
-            :key="item.label"
-            v-reveal="index * 80"
-          >
-            <div class="validation-list__meta">
-              <span>0{{ index + 1 }}</span>
-              <p>{{ item.label }}</p>
-            </div>
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.text }}</p>
-          </article>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <CtaBanner
-      :title="content.methodology.cta.title"
-      :text="content.methodology.cta.text"
-    />
+      <CtaBanner
+        :title="content.methodology.cta.title"
+        :text="content.methodology.cta.text"
+      />
+    </div>
   </main>
 </template>

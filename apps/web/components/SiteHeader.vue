@@ -4,6 +4,7 @@ const config = useRuntimeConfig()
 const { content } = usePulseI18n()
 const menuOpen = ref(false)
 const headerScrolled = ref(false)
+const homeDarkVisible = ref(false)
 const scrollProgress = ref(0)
 
 let animationFrame: number | null = null
@@ -42,8 +43,13 @@ function updateHeader() {
   const currentScrollY = Math.max(window.scrollY, 0)
   const scrollableHeight =
     document.documentElement.scrollHeight - window.innerHeight
+  const homeDark = route.path === '/' || route.path === '/como-trabajamos'
+    ? document.querySelector<HTMLElement>('.scroll-theme-reveal')
+    : null
+  const darkBounds = homeDark?.getBoundingClientRect()
 
   headerScrolled.value = currentScrollY > 12
+  homeDarkVisible.value = Boolean(darkBounds && darkBounds.top <= 82)
   scrollProgress.value =
     scrollableHeight > 0
       ? Math.min(100, Math.max(0, (currentScrollY / scrollableHeight) * 100))
@@ -90,6 +96,7 @@ onBeforeUnmount(() => {
     class="site-header"
     :class="{
       'site-header--scrolled': headerScrolled,
+      'site-header--home-dark': homeDarkVisible && !menuOpen,
       'site-header--menu-open': menuOpen,
     }"
   >
