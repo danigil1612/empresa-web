@@ -92,6 +92,7 @@ export const messages = {
         title: 'Detecta el desgaste emocional de tu equipo',
         accent: 'antes de que afecte al rendimiento.',
         lead: 'PULSE transforma las respuestas de los equipos en información continua para que dirección y RR. HH. detecten tendencias, anticipen riesgos y tomen decisiones con más criterio.',
+        visualAlt: 'Ordenador portátil con el panel de Pulse y móvil con el estado del equipo.',
         how: 'Cómo funciona',
         positive: 'Señal positiva esta semana',
         risk: 'Riesgo de desconexión',
@@ -450,6 +451,7 @@ export const messages = {
         eyebrow: 'Visión global',
         title: "Entiende cómo está el equipo sin exponer a las personas.",
         text: "PULSE transforma las respuestas en una lectura agregada que permite identificar tendencias, prioridades y posibles señales de desgaste.",
+        visualAlt: 'Vista del panel Pulse con la distribución de emociones por cuadrante y un gráfico de evolución.',
         checks: [
           "Información compartida entre RR. HH. y dirección.",
           "Una visión común para orientar decisiones.",
@@ -800,6 +802,7 @@ export const messages = {
         title: 'Detecta el desgast emocional del teu equip',
         accent: 'abans que afecti el rendiment.',
         lead: 'PULSE transforma les respostes dels equips en informació contínua perquè direcció i RRHH detectin tendències, anticipin riscos i prenguin decisions amb més criteri.',
+        visualAlt: 'Ordinador portàtil amb el panell de Pulse i mòbil amb l’estat de l’equip.',
         how: 'Com funciona',
         positive: 'Senyal positiu aquesta setmana',
         risk: 'Risc de desconnexió',
@@ -1158,6 +1161,7 @@ export const messages = {
         eyebrow: 'Visió global',
         title: "Entén com està l’equip sense exposar les persones.",
         text: "PULSE transforma les respostes en una lectura agregada que permet identificar tendències, prioritats i possibles senyals de desgast.",
+        visualAlt: 'Vista del panell Pulse amb la distribució d’emocions per quadrant i un gràfic d’evolució.',
         checks: [
           "Informació compartida entre RRHH i direcció.",
           "Una visió comuna per orientar decisions.",
@@ -1508,6 +1512,7 @@ export const messages = {
         title: 'Detect emotional strain in your team',
         accent: 'before it affects performance.',
         lead: 'PULSE turns team responses into continuous insight so leadership and HR can identify trends, anticipate risks and make better-informed decisions.',
+        visualAlt: 'Laptop showing the Pulse dashboard and phone showing the team status.',
         how: 'How it works',
         positive: 'Positive signal this week',
         risk: 'Disconnection risk',
@@ -1865,6 +1870,7 @@ export const messages = {
         eyebrow: 'A global view',
         title: "Understand your team without exposing individuals.",
         text: "PULSE turns responses into an aggregate view that reveals trends, priorities and potential signs of strain.",
+        visualAlt: 'Pulse dashboard showing emotions by quadrant and a trend chart.',
         checks: [
           "Information shared by HR and leadership.",
           "A common view to guide decisions.",
