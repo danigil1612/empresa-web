@@ -21,7 +21,7 @@ const text = computed(() => props.text ?? content.value.common.cta.text)
           <p>{{ text }}</p>
           <NuxtLink class="button button--light" to="/demo">
             {{ content.common.actions.demo }}
-            <i class="fi fi-br-arrow-right" aria-hidden="true" />
+            <AnimatedArrowIcon />
           </NuxtLink>
         </div>
       </div>

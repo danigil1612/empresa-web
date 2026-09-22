@@ -88,34 +88,38 @@ export const messages = {
           'Pulse detecta señales de desgaste, desconexión y bienestar antes de que afecten al rendimiento del equipo.',
       },
       hero: {
-        eyebrow: 'Bienestar que ayuda a decidir',
-        title: 'Detecta el desgaste de tu equipo antes de que',
-        accent: 'afecte al rendimiento.',
-        lead: 'Pulse convierte el estado emocional real de tu equipo en señales claras para RR. HH., liderazgo y dirección.',
+        eyebrow: 'Información para tomar mejores decisiones',
+        title: 'Detecta el desgaste emocional de tu equipo',
+        accent: 'antes de que afecte al rendimiento.',
+        lead: 'Pulse transforma las respuestas de los equipos en información continua para que dirección y RR. HH. detecten tendencias, anticipen riesgos y tomen decisiones con más criterio.',
         how: 'Cómo funciona',
         positive: 'Señal positiva esta semana',
         risk: 'Riesgo de desconexión',
+        metrics: [
+          { value: '5 s', label: 'Tiempo de respuesta' },
+          { value: '100%', label: 'Respuestas anónimas' },
+          { value: '365 días', label: 'Información continua' },
+        ],
       },
       problem: {
-        eyebrow: 'El problema empieza antes de verse',
-        title: 'Tu empresa probablemente está perdiendo esto sin saberlo.',
-        intro:
-          'Cuando faltan señales tempranas, el coste humano y el coste de negocio avanzan juntos.',
+        eyebrow: 'Las primeras señales',
+        title: 'Cada organización envía señales. Saber interpretarlas marca la diferencia.',
+        intro: '',
         cards: [
           {
             number: '01',
             title: 'Desgaste invisible',
-            text: 'El cansancio emocional se acumula en silencio hasta convertirse en rotación, bajas o pérdida de foco.',
+            text: 'El desgaste emocional se acumula en silencio. Cuando se hace visible, a menudo ya impacta en la rotación, el absentismo o el rendimiento.',
           },
           {
             number: '02',
-            title: 'Decisiones tardías',
-            text: 'Sin señales frecuentes, RR. HH. y liderazgo actúan cuando el problema ya es evidente.',
+            title: 'Información insuficiente',
+            text: 'Sin información continua, RR. HH. y la dirección suelen actuar cuando el problema ya es evidente.',
           },
           {
             number: '03',
-            title: 'Escucha que no activa',
-            text: 'Una encuesta anual explica el pasado. El equipo necesita una escucha ligera para decidir en el presente.',
+            title: 'Más contexto, mejores decisiones',
+            text: 'Entender la evolución emocional de los equipos permite decidir con más criterio y en el momento adecuado.',
           },
         ],
       },
@@ -222,7 +226,7 @@ export const messages = {
           'Así trabaja Pulse para escuchar al equipo, detectar patrones e interpretar señales que ayudan a decidir.',
       },
       hero: {
-        eyebrow: 'Cómo trabajamos',
+        eyebrow: 'Explora nuestro proceso',
         title: 'Así trabajamos para entender cómo está',
         accent: 'realmente tu equipo.',
         description:
@@ -304,7 +308,7 @@ export const messages = {
             subtitle: 'Baja energía + agradable',
           },
         ],
-        note: 'Modelo conceptual · Nomenclatura pendiente de validación científica',
+        note: 'Referencia conceptual: modelo circumplejo del afecto de James A. Russell · La aplicación específica de Pulse debe validarse y documentarse.',
       },
       principles: {
         eyebrow: 'Por qué funciona',
@@ -329,10 +333,26 @@ export const messages = {
         ],
       },
       validation: {
-        eyebrow: 'Referencias y validación',
-        title: 'Una base científica que debe poder explicarse.',
-        text: 'Este bloque queda preparado para incorporar las fuentes, metodología de validación y especialistas que el cliente apruebe.',
-        items: ['Marco científico', 'Validación del modelo', 'Protección del anonimato'],
+        eyebrow: 'Rigor y transparencia',
+        title: 'Una metodología conectada con la evidencia y abierta a mejorar.',
+        text: 'Pulse integra conocimiento científico y aprendizaje real para ofrecer una lectura útil, comprensible y responsable del estado emocional de las organizaciones.',
+        items: [
+          {
+            label: 'Fundamentos científicos',
+            title: 'Basados en modelos e investigaciones de referencia.',
+            text: 'PULSE se fundamenta en modelos e investigaciones de referencia en psicología afectiva, comportamiento organizacional, neurociencia y ciencia de datos. Nuestra metodología integra este conocimiento para ofrecer una lectura práctica del estado emocional de las organizaciones, manteniendo siempre el vínculo con la evidencia científica disponible.',
+          },
+          {
+            label: 'Metodología propia',
+            title: 'Una propuesta desarrollada para responder a la realidad de las organizaciones.',
+            text: 'La metodología PULSE es una propuesta propia que adapta distintas aportaciones de la literatura científica a la realidad de las organizaciones. Combina la recogida continua de datos, una experiencia de uso sencilla y modelos de análisis que transforman las señales emocionales en información útil para la toma de decisiones.',
+          },
+          {
+            label: 'Validación continua',
+            title: 'Mejoramos y validamos la metodología con cada implantación.',
+            text: 'PULSE es un proyecto en evolución. Cada implantación aporta nuevos datos y aprendizajes que nos permiten seguir validando, ajustando y mejorando la metodología. A medida que dispongamos de nuevos estudios, casos reales y resultados, los compartiremos con el mismo compromiso de rigor y transparencia que inspiró el desarrollo del proyecto.',
+          },
+        ],
       },
       cta: {
         title: 'Una mejor escucha empieza con una experiencia más simple.',
@@ -346,7 +366,7 @@ export const messages = {
           'Descubre qué recibe tu organización con Pulse: escucha continua, visión global, interpretación e implementación acompañada.',
       },
       hero: {
-        eyebrow: 'Qué ofrecemos',
+        eyebrow: 'Descubre qué recibe tu organización',
         title: 'Todo lo que necesitas para entender mejor',
         accent: 'cómo está tu equipo.',
         description:
@@ -523,7 +543,7 @@ export const messages = {
           'Conoce la historia, el propósito y la forma de entender el bienestar que impulsa a Pulse.',
       },
       hero: {
-        eyebrow: 'Quiénes somos',
+        eyebrow: 'Conoce la historia de Pulse',
         title: 'Pulse nace para ayudar a las empresas a escuchar mejor a las personas',
         accent: 'que las hacen crecer.',
         description:
@@ -744,34 +764,38 @@ export const messages = {
           'Pulse detecta senyals de desgast, desconnexió i benestar abans que afectin el rendiment.',
       },
       hero: {
-        eyebrow: 'Benestar que ajuda a decidir',
-        title: "Detecta el desgast del teu equip abans que",
-        accent: 'afecti el rendiment.',
-        lead: "Pulse converteix l'estat emocional real del teu equip en senyals clars per a RR. HH., lideratge i direcció.",
+        eyebrow: 'Informació per prendre millors decisions',
+        title: 'Detecta el desgast emocional del teu equip',
+        accent: 'abans que afecti el rendiment.',
+        lead: 'PULSE transforma les respostes dels equips en informació contínua perquè direcció i RRHH detectin tendències, anticipin riscos i prenguin decisions amb més criteri.',
         how: 'Com funciona',
         positive: 'Senyal positiu aquesta setmana',
         risk: 'Risc de desconnexió',
+        metrics: [
+          { value: '5 s', label: 'Temps de resposta' },
+          { value: '100%', label: 'Respostes anònimes' },
+          { value: '365 dies', label: 'Informació contínua' },
+        ],
       },
       problem: {
-        eyebrow: 'El problema comença abans de veure’s',
-        title: 'La teva empresa probablement està perdent això sense saber-ho.',
-        intro:
-          'Quan falten senyals primerencs, el cost humà i el cost de negoci avancen junts.',
+        eyebrow: 'Els primers senyals',
+        title: 'Cada organització envia senyals. Saber interpretar-los marca la diferència.',
+        intro: '',
         cards: [
           {
             number: '01',
             title: 'Desgast invisible',
-            text: 'El cansament emocional s’acumula en silenci fins a convertir-se en rotació, baixes o pèrdua de focus.',
+            text: 'El desgast emocional s’acumula en silenci. Quan es fa visible, sovint ja impacta en la rotació, l’absentisme o el rendiment.',
           },
           {
             number: '02',
-            title: 'Decisions tardanes',
-            text: 'Sense senyals freqüents, RR. HH. i lideratge actuen quan el problema ja és evident.',
+            title: 'Informació insuficient',
+            text: 'Sense informació contínua, RRHH i la direcció acostumen a actuar quan el problema ja és evident.',
           },
           {
             number: '03',
-            title: 'Escolta que no activa',
-            text: 'Una enquesta anual explica el passat. L’equip necessita una escolta lleugera per decidir en el present.',
+            title: 'Més context, millors decisions',
+            text: 'Entendre l’evolució emocional dels equips permet prendre decisions amb més criteri i en el moment adequat.',
           },
         ],
       },
@@ -878,7 +902,7 @@ export const messages = {
           'Així treballa Pulse per escoltar l’equip, detectar patrons i interpretar senyals que ajuden a decidir.',
       },
       hero: {
-        eyebrow: 'Com treballem',
+        eyebrow: 'Explora el nostre procés',
         title: 'Així treballem per entendre com està',
         accent: 'realment el teu equip.',
         description:
@@ -960,7 +984,7 @@ export const messages = {
             subtitle: 'Baixa energia + agradable',
           },
         ],
-        note: 'Model conceptual · Nomenclatura pendent de validació científica',
+        note: 'Referència conceptual: model circumplex de l’afecte de James A. Russell · L’aplicació específica de Pulse s’ha de validar i documentar.',
       },
       principles: {
         eyebrow: 'Per què funciona',
@@ -985,10 +1009,26 @@ export const messages = {
         ],
       },
       validation: {
-        eyebrow: 'Referències i validació',
-        title: 'Una base científica que s’ha de poder explicar.',
-        text: 'Aquest bloc queda preparat per incorporar les fonts, la metodologia de validació i els especialistes que el client aprovi.',
-        items: ['Marc científic', 'Validació del model', 'Protecció de l’anonimat'],
+        eyebrow: 'Rigor i transparència',
+        title: 'Una metodologia connectada amb l’evidència i oberta a millorar.',
+        text: 'Pulse integra coneixement científic i aprenentatge real per oferir una lectura útil, comprensible i responsable de l’estat emocional de les organitzacions.',
+        items: [
+          {
+            label: 'Fonaments científics',
+            title: 'Basats en models i investigacions de referència.',
+            text: "PULSE es fonamenta en models i investigacions de referència en psicologia afectiva, comportament organitzacional, neurociència i ciència de dades. La nostra metodologia integra aquest coneixement per oferir una lectura pràctica de l'estat emocional de les organitzacions, mantenint sempre el vincle amb l'evidència científica disponible.",
+          },
+          {
+            label: 'Metodologia pròpia',
+            title: 'Una proposta desenvolupada per respondre a la realitat de les organitzacions.',
+            text: "La metodologia PULSE és una proposta pròpia que adapta diferents aportacions de la literatura científica a la realitat de les organitzacions. Combina la recollida contínua de dades, una experiència d'ús senzilla i models d'anàlisi que transformen els senyals emocionals en informació útil per a la presa de decisions.",
+          },
+          {
+            label: 'Validació contínua',
+            title: 'Millorem i validem la metodologia amb cada implantació.',
+            text: "PULSE és un projecte en evolució. Cada implantació aporta noves dades i aprenentatges que ens permeten continuar validant, ajustant i millorant la metodologia. A mesura que disposem de nous estudis, casos reals i resultats, els compartim amb el mateix compromís de rigor i transparència que ha inspirat el desenvolupament del projecte.",
+          },
+        ],
       },
       cta: {
         title: 'Una millor escolta comença amb una experiència més simple.',
@@ -1002,7 +1042,7 @@ export const messages = {
           'Descobreix què rep la teva organització amb Pulse: escolta contínua, visió global, interpretació i implementació acompanyada.',
       },
       hero: {
-        eyebrow: 'Què oferim',
+        eyebrow: 'Descobreix què rep la teva organització',
         title: 'Tot el que necessites per entendre millor',
         accent: 'com està el teu equip.',
         description:
@@ -1179,7 +1219,7 @@ export const messages = {
           'Coneix la història, el propòsit i la manera d’entendre el benestar que impulsa Pulse.',
       },
       hero: {
-        eyebrow: 'Qui som',
+        eyebrow: 'Coneix la història de Pulse',
         title: 'Pulse neix per ajudar les empreses a escoltar millor les persones',
         accent: 'que les fan créixer.',
         description:
@@ -1400,34 +1440,38 @@ export const messages = {
           'Pulse detects early signs of strain, disconnection and wellbeing before they affect team performance.',
       },
       hero: {
-        eyebrow: 'Wellbeing that supports decisions',
-        title: 'Detect team strain before it',
-        accent: 'affects performance.',
-        lead: 'Pulse turns your team’s real emotional state into clear signals for HR, leadership and management.',
+        eyebrow: 'Information for better decisions',
+        title: 'Detect emotional strain in your team',
+        accent: 'before it affects performance.',
+        lead: 'Pulse turns team responses into continuous insight so leadership and HR can identify trends, anticipate risks and make better-informed decisions.',
         how: 'How it works',
         positive: 'Positive signal this week',
         risk: 'Disconnection risk',
+        metrics: [
+          { value: '5 sec', label: 'Response time' },
+          { value: '100%', label: 'Anonymous responses' },
+          { value: '365 days', label: 'Continuous insight' },
+        ],
       },
       problem: {
-        eyebrow: 'The problem starts before it shows',
-        title: 'Your company may already be losing this without knowing it.',
-        intro:
-          'When early signals are missing, the human and business costs move together.',
+        eyebrow: 'The first signals',
+        title: 'Every organisation sends signals. Knowing how to read them makes the difference.',
+        intro: '',
         cards: [
           {
             number: '01',
             title: 'Invisible strain',
-            text: 'Emotional fatigue builds quietly until it becomes turnover, absence or loss of focus.',
+            text: 'Emotional strain builds quietly. By the time it becomes visible, it is often already affecting turnover, absence or performance.',
           },
           {
             number: '02',
-            title: 'Late decisions',
-            text: 'Without frequent signals, HR and leadership act only when the problem is already visible.',
+            title: 'Insufficient information',
+            text: 'Without continuous insight, HR and leadership often act only once the problem is already evident.',
           },
           {
             number: '03',
-            title: 'Listening without action',
-            text: 'An annual survey explains the past. Teams need lightweight listening to support decisions now.',
+            title: 'More context, better decisions',
+            text: 'Understanding how teams are evolving emotionally supports better judgement and action at the right time.',
           },
         ],
       },
@@ -1534,7 +1578,7 @@ export const messages = {
           'See how Pulse listens to teams, detects patterns and interprets signals that support better decisions.',
       },
       hero: {
-        eyebrow: 'How we work',
+        eyebrow: 'Explore our process',
         title: 'This is how we understand how your team is',
         accent: 'really doing.',
         description:
@@ -1615,7 +1659,7 @@ export const messages = {
             subtitle: 'Low energy + pleasant',
           },
         ],
-        note: 'Concept model · Terminology pending scientific validation',
+        note: 'Conceptual reference: James A. Russell’s circumplex model of affect · Pulse’s specific application must be validated and documented.',
       },
       principles: {
         eyebrow: 'Why it works',
@@ -1640,10 +1684,26 @@ export const messages = {
         ],
       },
       validation: {
-        eyebrow: 'References and validation',
-        title: 'A scientific basis that can be explained.',
-        text: 'This section is ready for the sources, validation methodology and specialists approved by the client.',
-        items: ['Scientific framework', 'Model validation', 'Anonymity protection'],
+        eyebrow: 'Rigour and transparency',
+        title: 'A methodology connected to evidence and designed to improve.',
+        text: 'Pulse brings scientific knowledge and real-world learning together to provide a useful, understandable and responsible view of organisations’ emotional state.',
+        items: [
+          {
+            label: 'Scientific foundations',
+            title: 'Grounded in established models and research.',
+            text: 'PULSE draws on recognised work in affective psychology, organisational behaviour, neuroscience and data science. Our methodology brings this knowledge together to provide a practical view of organisations’ emotional state while maintaining a clear connection to the available scientific evidence.',
+          },
+          {
+            label: 'Our methodology',
+            title: 'Developed to respond to the reality of organisations.',
+            text: 'The PULSE methodology is our own framework, adapting contributions from scientific literature to organisational reality. It combines continuous data collection, a simple user experience and analysis models that turn emotional signals into useful decision-making information.',
+          },
+          {
+            label: 'Continuous validation',
+            title: 'We improve and validate the methodology with every implementation.',
+            text: 'PULSE is an evolving project. Every implementation provides new data and learning that help us continue validating, refining and improving the methodology. As new studies, real cases and results become available, we will share them with the same commitment to rigour and transparency that has guided the project from the start.',
+          },
+        ],
       },
       cta: {
         title: 'Better listening starts with a simpler experience.',
@@ -1657,7 +1717,7 @@ export const messages = {
           'See what your organisation receives with Pulse: continuous listening, a global view, interpretation and supported implementation.',
       },
       hero: {
-        eyebrow: 'What we offer',
+        eyebrow: 'See what your organisation receives',
         title: 'Everything you need to better understand',
         accent: 'how your team is doing.',
         description:
@@ -1834,7 +1894,7 @@ export const messages = {
           'Discover the story, purpose and view of wellbeing that drive Pulse.',
       },
       hero: {
-        eyebrow: 'Who we are',
+        eyebrow: 'Discover the Pulse story',
         title: 'Pulse was created to help companies listen better to the people',
         accent: 'who make them grow.',
         description:

@@ -49,6 +49,7 @@ usePageSeo(
   <main id="main-content" tabindex="-1">
     <PageHero
       :eyebrow="content.product.hero.eyebrow"
+      eyebrow-target="#oferta"
       :title="content.product.hero.title"
       :accent="content.product.hero.accent"
       :description="content.product.hero.description"
@@ -56,12 +57,12 @@ usePageSeo(
       <template #actions>
         <NuxtLink class="button button--primary" to="/demo">
           {{ content.product.hero.action }}
-          <i class="fi fi-br-arrow-right" aria-hidden="true" />
+          <AnimatedArrowIcon />
         </NuxtLink>
       </template>
     </PageHero>
 
-    <section class="section offer-section">
+    <section id="oferta" class="section offer-section">
       <div class="shell">
         <div v-reveal class="section-heading">
           <p class="eyebrow">{{ content.product.offer.eyebrow }}</p>

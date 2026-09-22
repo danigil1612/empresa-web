@@ -3,13 +3,10 @@ const route = useRoute()
 const config = useRuntimeConfig()
 const { content } = usePulseI18n()
 const menuOpen = ref(false)
-const headerHidden = ref(false)
 const headerScrolled = ref(false)
+const homeDarkVisible = ref(false)
 const scrollProgress = ref(0)
 
-const directionThreshold = 7
-const hideAfter = 96
-let lastScrollY = 0
 let animationFrame: number | null = null
 
 const navigation = computed(() => [
@@ -25,11 +22,9 @@ watch(
   () => route.fullPath,
   () => {
     menuOpen.value = false
-    headerHidden.value = false
 
     if (import.meta.client) {
       nextTick(() => {
-        lastScrollY = Math.max(window.scrollY, 0)
         updateHeader()
       })
     }
@@ -42,35 +37,23 @@ watch(menuOpen, (isOpen) => {
   }
 
   document.body.classList.toggle('is-menu-open', isOpen)
-
-  if (isOpen) {
-    headerHidden.value = false
-  }
 })
 
 function updateHeader() {
   const currentScrollY = Math.max(window.scrollY, 0)
-  const delta = currentScrollY - lastScrollY
   const scrollableHeight =
     document.documentElement.scrollHeight - window.innerHeight
+  const homeDark = route.path === '/' || route.path === '/como-trabajamos'
+    ? document.querySelector<HTMLElement>('.scroll-theme-reveal')
+    : null
+  const darkBounds = homeDark?.getBoundingClientRect()
 
   headerScrolled.value = currentScrollY > 12
+  homeDarkVisible.value = Boolean(darkBounds && darkBounds.top <= 82)
   scrollProgress.value =
     scrollableHeight > 0
       ? Math.min(100, Math.max(0, (currentScrollY / scrollableHeight) * 100))
       : 0
-
-  if (menuOpen.value || currentScrollY <= 12) {
-    headerHidden.value = false
-  } else if (delta > directionThreshold && currentScrollY > hideAfter) {
-    headerHidden.value = true
-  } else if (delta < -directionThreshold) {
-    headerHidden.value = false
-  }
-
-  if (Math.abs(delta) >= directionThreshold || currentScrollY <= 12) {
-    lastScrollY = currentScrollY
-  }
 
   animationFrame = null
 }
@@ -85,10 +68,6 @@ function toggleMenu() {
   menuOpen.value = !menuOpen.value
 }
 
-function showHeader() {
-  headerHidden.value = false
-}
-
 function handleDashboardClick(event: MouseEvent) {
   if (!dashboardUrl.value) {
     event.preventDefault()
@@ -96,7 +75,6 @@ function handleDashboardClick(event: MouseEvent) {
 }
 
 onMounted(() => {
-  lastScrollY = Math.max(window.scrollY, 0)
   updateHeader()
   window.addEventListener('scroll', handleScroll, { passive: true })
   window.addEventListener('resize', handleScroll, { passive: true })
@@ -117,11 +95,10 @@ onBeforeUnmount(() => {
   <header
     class="site-header"
     :class="{
-      'site-header--hidden': headerHidden,
       'site-header--scrolled': headerScrolled,
+      'site-header--home-dark': homeDarkVisible && !menuOpen,
       'site-header--menu-open': menuOpen,
     }"
-    @focusin="showHeader"
   >
     <div class="site-header__inner shell">
       <NuxtLink

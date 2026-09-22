@@ -114,7 +114,7 @@ function handleSubmit() {
 
               <button class="button button--primary button--wide" type="submit">
                 {{ content.demo.form.submit }}
-                <i class="fi fi-br-arrow-right" aria-hidden="true" />
+                <AnimatedArrowIcon />
               </button>
               <p class="demo-form__note">{{ content.demo.form.note }}</p>
             </form>

@@ -10,6 +10,11 @@ export default defineNuxtConfig({
   experimental: {
     appManifest: false,
   },
+  nitro: {
+    output: {
+      dir: '../../.output',
+    },
+  },
   css: [
     '@fontsource-variable/outfit',
     '@flaticon/flaticon-uicons/css/bold/rounded.css',
