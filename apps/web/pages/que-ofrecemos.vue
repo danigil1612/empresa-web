@@ -104,7 +104,6 @@ usePageSeo(
               {{ check }}
             </li>
           </ul>
-          <p class="placeholder-note">{{ content.product.showcase.note }}</p>
         </div>
         <div v-reveal="120" class="product-showcase__visual">
           <AppMockup />
@@ -147,8 +146,8 @@ usePageSeo(
             <div class="product-tab-panel__copy">
               <span>0{{ activeTab + 1 }}</span>
               <h3>{{ activeDetail.title }}</h3>
-              <p>{{ activeDetail.text }}</p>
-              <ul>
+              <p v-if="activeDetail.text">{{ activeDetail.text }}</p>
+              <ul v-if="activeDetail.points.length">
                 <li v-for="point in activeDetail.points" :key="point">
                   {{ point }}
                 </li>
@@ -169,9 +168,6 @@ usePageSeo(
               </div>
             </div>
           </div>
-          <p class="placeholder-note product-detail__note">
-            {{ content.product.detail.note }}
-          </p>
         </div>
       </div>
     </section>

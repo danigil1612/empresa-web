@@ -121,22 +121,6 @@ usePageSeo(
       </div>
     </section>
 
-    <section class="section pulse-intro-section image-ready-section">
-      <div class="shell pulse-intro">
-        <div v-reveal class="pulse-intro__heading">
-          <p class="eyebrow">{{ content.home.introduction.eyebrow }}</p>
-          <h2>{{ content.home.introduction.title }}</h2>
-        </div>
-        <div v-reveal="100" class="pulse-intro__copy">
-          <p>{{ content.home.introduction.text }}</p>
-          <NuxtLink class="text-link" to="/quienes-somos">
-            {{ content.home.introduction.link }}
-            <AnimatedArrowIcon :size="18" />
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
     <div ref="homeDarkRef" class="scroll-theme-reveal home-dark">
       <section class="section methodology-section">
         <div class="shell">
@@ -194,6 +178,31 @@ usePageSeo(
         </div>
       </section>
 
+      <section class="section home-product-section">
+        <div class="shell">
+          <div v-reveal class="section-heading home-product-section__heading">
+            <p class="eyebrow eyebrow--light">{{ content.home.product.eyebrow }}</p>
+            <h2>{{ content.home.product.title }}</h2>
+            <p>{{ content.home.product.intro }}</p>
+          </div>
+          <div class="home-product-benefits">
+            <article
+              v-for="(benefit, index) in content.home.product.benefits"
+              :key="benefit.title"
+              v-reveal="index * 80"
+            >
+              <span>0{{ index + 1 }}</span>
+              <h3>{{ benefit.title }}</h3>
+              <p>{{ benefit.text }}</p>
+            </article>
+          </div>
+          <NuxtLink class="button button--method" to="/que-ofrecemos">
+            {{ content.home.product.link }}
+            <AnimatedArrowIcon />
+          </NuxtLink>
+        </div>
+      </section>
+
       <section class="section section--soft trust-section">
         <div class="shell trust-grid">
           <div v-reveal class="section-heading">
@@ -202,14 +211,25 @@ usePageSeo(
             <p>{{ content.home.trust.text }}</p>
           </div>
           <div class="trust-list">
-            <div
+            <details
               v-for="(item, index) in content.home.trust.items"
-              :key="item"
+              :key="item.title"
               v-reveal="index * 80"
             >
-              <span>0{{ index + 1 }}</span>
-              <p>{{ item }}</p>
-            </div>
+              <summary>
+                <span>0{{ index + 1 }}</span>
+                <span class="trust-list__summary-copy">
+                  <small>{{ item.title }}</small>
+                  <strong>{{ item.subtitle }}</strong>
+                </span>
+                <span class="trust-list__toggle" aria-hidden="true">
+                  <AnimatedDisclosureIcon :size="22" />
+                </span>
+              </summary>
+              <div class="trust-list__body">
+                <p>{{ item.detail }}</p>
+              </div>
+            </details>
           </div>
         </div>
       </section>
@@ -231,7 +251,7 @@ usePageSeo(
         </div>
       </section>
 
-      <CtaBanner />
+      <CtaBanner :title="content.common.cta.title" :text="content.common.cta.text" />
     </div>
   </main>
 </template>

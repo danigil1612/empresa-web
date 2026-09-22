@@ -123,7 +123,6 @@ usePageSeo(
           <p class="eyebrow">{{ content.methodology.model.eyebrow }}</p>
           <h2>{{ content.methodology.model.title }}</h2>
           <p>{{ content.methodology.model.text }}</p>
-          <small>{{ content.methodology.model.note }}</small>
         </div>
 
         <div v-reveal="100" class="mood-matrix">
@@ -193,19 +192,23 @@ usePageSeo(
             <h2>{{ content.methodology.validation.title }}</h2>
             <p>{{ content.methodology.validation.text }}</p>
           </div>
-          <div class="validation-list validation-list--detailed">
-            <article
+          <div class="validation-list validation-list--accordion">
+            <details
               v-for="(item, index) in content.methodology.validation.items"
               :key="item.label"
               v-reveal="index * 80"
             >
-              <div class="validation-list__meta">
+              <summary>
                 <span>0{{ index + 1 }}</span>
-                <p>{{ item.label }}</p>
+                <strong>{{ item.label }}</strong>
+                <span class="validation-list__toggle" aria-hidden="true">
+                  <AnimatedDisclosureIcon :size="22" />
+                </span>
+              </summary>
+              <div class="validation-list__body">
+                <p>{{ item.text }}</p>
               </div>
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.text }}</p>
-            </article>
+            </details>
           </div>
         </div>
       </section>

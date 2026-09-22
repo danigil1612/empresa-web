@@ -16,7 +16,9 @@ const navigation = computed(() => [
   { label: content.value.common.nav.company, to: '/quienes-somos' },
 ])
 
-const dashboardUrl = computed(() => String(config.public.dashboardUrl || ''))
+const dashboardUrl = computed(() => String(config.public.dashboardUrl || '') // feature flag for dashboard link
+  .trim()
+  .replace(/\/+$/, '')) // remove trailing slashes
 
 watch(
   () => route.fullPath,

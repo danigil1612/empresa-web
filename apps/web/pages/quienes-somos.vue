@@ -36,11 +36,6 @@ usePageSeo(
           <p>{{ item.text }}</p>
         </article>
       </div>
-      <div class="shell">
-        <p class="placeholder-note company-story__note">
-          {{ content.company.story.note }}
-        </p>
-      </div>
     </section>
 
     <section class="section company-manifesto">
@@ -51,27 +46,6 @@ usePageSeo(
           </p>
           <span class="manifesto-card__quote" aria-hidden="true">“</span>
           <p>{{ content.company.manifesto }}</p>
-          <span>{{ content.company.manifestoBy }}</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section wellbeing-belief-section">
-      <div class="shell wellbeing-belief">
-        <div v-reveal class="section-heading">
-          <p class="eyebrow">{{ content.company.wellbeing.eyebrow }}</p>
-          <h2>{{ content.company.wellbeing.title }}</h2>
-          <p>{{ content.company.wellbeing.text }}</p>
-        </div>
-        <div class="wellbeing-belief__list">
-          <p
-            v-for="(item, index) in content.company.wellbeing.items"
-            :key="item"
-            v-reveal="index * 80"
-          >
-            <span>0{{ index + 1 }}</span>
-            {{ item }}
-          </p>
         </div>
       </div>
     </section>
@@ -92,28 +66,6 @@ usePageSeo(
             <h3>{{ value.title }}</h3>
             <p>{{ value.text }}</p>
           </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="shell audience-panel">
-        <div v-reveal class="audience-panel__intro">
-          <p class="eyebrow eyebrow--light">
-            {{ content.company.audience.eyebrow }}
-          </p>
-          <h2>{{ content.company.audience.title }}</h2>
-          <p>{{ content.company.audience.text }}</p>
-        </div>
-        <div class="audience-panel__groups">
-          <div
-            v-for="(group, index) in content.company.audience.groups"
-            :key="group"
-            v-reveal="index * 80"
-          >
-            <span>0{{ index + 1 }}</span>
-            <p>{{ group }}</p>
-          </div>
         </div>
       </div>
     </section>

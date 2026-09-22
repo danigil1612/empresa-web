@@ -17,11 +17,11 @@ onMounted(() => {
     return
   }
 
-  const buttonParent = icon.value?.closest('button')
+  const interactiveParent = icon.value?.closest('button, summary')
 
-  if (!buttonParent) {
+  if (!interactiveParent) {
     console.warn(
-      '[Pulse] AnimatedDisclosureIcon must be placed inside a real button.',
+      '[Pulse] AnimatedDisclosureIcon must be placed inside a button or summary.',
     )
   }
 })
@@ -84,12 +84,12 @@ onMounted(() => {
   transform: scaleY(0);
 }
 
-:global(button:hover) .animated-disclosure-icon:not(.is-open),
-:global(button:focus-visible) .animated-disclosure-icon:not(.is-open) {
-  transform: rotate(8deg);
+:global(button:hover .animated-disclosure-icon:not(.is-open)),
+:global(button:focus-visible .animated-disclosure-icon:not(.is-open)) {
+  transform: rotate(16deg) scale(1.1);
 }
 
-:global(button:active) .animated-disclosure-icon {
+:global(button:active .animated-disclosure-icon) {
   transform: scale(0.9);
   transition-duration: 90ms;
 }
@@ -100,9 +100,9 @@ onMounted(() => {
     transition: none;
   }
 
-  :global(button:hover) .animated-disclosure-icon:not(.is-open),
-  :global(button:focus-visible) .animated-disclosure-icon:not(.is-open),
-  :global(button:active) .animated-disclosure-icon {
+  :global(button:hover .animated-disclosure-icon:not(.is-open)),
+  :global(button:focus-visible .animated-disclosure-icon:not(.is-open)),
+  :global(button:active .animated-disclosure-icon) {
     transform: none;
   }
 
