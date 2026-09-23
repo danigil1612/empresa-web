@@ -51,7 +51,9 @@ function updateHeader() {
   const darkBounds = homeDark?.getBoundingClientRect()
 
   headerScrolled.value = currentScrollY > 12
-  homeDarkVisible.value = Boolean(darkBounds && darkBounds.top <= 82)
+  homeDarkVisible.value = Boolean(
+    darkBounds && darkBounds.top <= 82 && darkBounds.bottom > 82,
+  )
   scrollProgress.value =
     scrollableHeight > 0
       ? Math.min(100, Math.max(0, (currentScrollY / scrollableHeight) * 100))

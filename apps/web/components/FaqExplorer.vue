@@ -283,10 +283,10 @@ watch(
 
 <style scoped>
 .faq-explorer {
-  --faq-border: var(--border, rgba(24, 72, 80, 0.16));
-  --faq-ink: var(--ink, #184850);
+  --faq-border: var(--border, rgba(14, 42, 45, 0.16));
+  --faq-ink: var(--ink, #0e2a2d);
   --faq-ink-deep: var(--ink-deep, #0e2a2d);
-  --faq-soft: var(--soft, #aed9e1);
+  --faq-soft: var(--soft, #dce9ea);
   --faq-paper: var(--paper, #e9f3f4);
   --faq-coral: var(--coral, #f37e75);
 
@@ -331,12 +331,12 @@ watch(
 
 .faq-explorer__category:hover {
   border-color: var(--faq-border);
-  background: rgba(174, 217, 225, 0.22);
+  background: rgba(220, 233, 234, 0.22);
   transform: translateX(0.2rem);
 }
 
 .faq-explorer__category.is-active {
-  border-color: rgba(24, 72, 80, 0.12);
+  border-color: rgba(14, 42, 45, 0.12);
   background: var(--faq-ink-deep);
   color: var(--faq-paper);
 }
@@ -426,21 +426,16 @@ watch(
   height: 2.6rem;
   display: grid;
   place-items: center;
-  border: 1px solid var(--faq-border);
-  border-radius: 999px;
-  background: rgba(174, 217, 225, 0.18);
+  border: 0;
+  background: transparent;
   color: var(--faq-ink);
-  transition:
-    color 180ms ease,
-    background-color 180ms ease,
-    border-color 180ms ease;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .faq-explorer__item.is-open .faq-explorer__disclosure,
 .faq-explorer__question:hover .faq-explorer__disclosure {
-  border-color: var(--faq-ink-deep);
-  background: var(--faq-ink-deep);
-  color: var(--faq-paper);
+  color: var(--faq-ink-deep);
+  transform: scale(1.12);
 }
 
 .faq-explorer__answer {

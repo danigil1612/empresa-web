@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { faqMessages } from '~/i18n/faq'
+import TestimonialCarousel from '~/components/TestimonialCarousel.vue'
 
 const { content, locale } = usePulseI18n()
 const problemIcons = [
@@ -10,6 +11,7 @@ const problemIcons = [
 const activeProblem = ref(0)
 const activeMethodStep = ref(0)
 const homeDarkRef = useScrollThemeReveal()
+const homeLightRef = useScrollThemeReveal()
 
 function selectMethodStep(index: number, event: MouseEvent) {
   activeMethodStep.value = index
@@ -47,8 +49,15 @@ usePageSeo(
         <div v-reveal class="home-hero__copy">
           <p class="eyebrow">{{ content.home.hero.eyebrow }}</p>
           <h1>
-            {{ content.home.hero.title }}
-            <span>{{ content.home.hero.accent }}</span>
+            <ShinyText
+              :text="content.home.hero.title"
+              color="#0e2a2d"
+              shine-color="#527174"
+              :speed="1.8"
+              :delay="3"
+              :spread="115"
+            />
+            <span class="home-hero__accent">{{ ` ${content.home.hero.accent}` }}</span>
           </h1>
           <p class="home-hero__lead">{{ content.home.hero.lead }}</p>
           <div class="hero-actions">
@@ -146,9 +155,7 @@ usePageSeo(
                 aria-controls="method-step-detail"
                 @click="selectMethodStep(index, $event)"
               >
-                <span class="method-steps__index">0{{ index + 1 }}</span>
                 <span class="method-steps__tag">{{ step.tag }}</span>
-                <span class="method-step__title">{{ step.title }}</span>
               </button>
             </div>
 
@@ -160,9 +167,6 @@ usePageSeo(
                 >
                   <span class="method-detail__index">0{{ activeMethodStep + 1 }}</span>
                   <div>
-                    <p class="method-detail__tag">
-                      {{ content.home.methodology.steps[activeMethodStep]?.tag }}
-                    </p>
                     <h3>{{ content.home.methodology.steps[activeMethodStep]?.title }}</h3>
                     <p>{{ content.home.methodology.steps[activeMethodStep]?.text }}</p>
                   </div>
@@ -233,25 +237,30 @@ usePageSeo(
           </div>
         </div>
       </section>
+    </div>
 
-      <section class="section faq-section">
-        <div class="shell">
-          <div v-reveal class="section-heading faq-section__heading">
-            <p class="eyebrow">{{ faq.eyebrow }}</p>
-            <h2>{{ faq.title }}</h2>
-            <p>{{ faq.intro }}</p>
+    <div class="home-light-wrap">
+      <div ref="homeLightRef" class="scroll-theme-reveal home-light">
+        <section class="section faq-section">
+          <div class="shell">
+            <div v-reveal class="section-heading faq-section__heading">
+              <p class="eyebrow">{{ faq.eyebrow }}</p>
+              <h2>{{ faq.title }}</h2>
+              <p>{{ faq.intro }}</p>
+            </div>
+            <FaqExplorer
+              v-reveal="100"
+              :categories="faqCategories"
+              :aria-label="faq.title"
+              initial-category-id="about"
+            />
           </div>
-          <FaqExplorer
-            v-reveal="100"
-            class="faq-explorer--inverse"
-            :categories="faqCategories"
-            :aria-label="faq.title"
-            initial-category-id="about"
-          />
-        </div>
-      </section>
+        </section>
 
-      <CtaBanner :title="content.common.cta.title" :text="content.common.cta.text" />
+        <TestimonialCarousel />
+
+        <CtaBanner :title="content.common.cta.title" :text="content.common.cta.text" />
+      </div>
     </div>
   </main>
 </template>
