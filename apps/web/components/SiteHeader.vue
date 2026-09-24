@@ -110,7 +110,7 @@ onBeforeUnmount(() => {
         class="site-header__logo"
         :aria-label="content.common.a11y.home"
       >
-        <SiteLogo />
+        <SiteLogo use-approved />
       </NuxtLink>
 
       <button

@@ -52,10 +52,10 @@ usePageSeo(
             <ShinyText
               :text="content.home.hero.title"
               color="#0e2a2d"
-              shine-color="#527174"
-              :speed="1.8"
-              :delay="3"
-              :spread="115"
+              shine-color="#345052"
+              :speed="4.8"
+              :delay="5.5"
+              :spread="110"
             />
             <span class="home-hero__accent">{{ ` ${content.home.hero.accent}` }}</span>
           </h1>
