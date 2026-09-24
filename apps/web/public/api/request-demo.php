@@ -33,8 +33,9 @@ $company = field('company', 160);
 $teamSize = field('team-size', 80);
 $message = field('message', 3000);
 $locale = field('locale', 5);
+$privacyRead = field('privacy-read', 3);
 
-if ($name === '' || $email === false || $company === '' || $teamSize === '') {
+if ($name === '' || $email === false || $company === '' || $teamSize === '' || $privacyRead !== 'yes') {
     respond(422, false);
 }
 
@@ -49,6 +50,7 @@ $body = implode("\n", [
     'Empresa: ' . $company,
     'Mida de l’equip: ' . $teamSize,
     'Idioma: ' . ($locale !== '' ? $locale : 'No indicat'),
+    'Informació de privacitat llegida: sí',
     '',
     'Missatge:',
     $message !== '' ? $message : 'Sense missatge.',

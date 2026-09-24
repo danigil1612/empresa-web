@@ -34,7 +34,15 @@ const { content } = usePulseI18n()
             {{ content.common.footer.email }}
           </a>
         </p>
-        <p>{{ content.common.footer.legal }}</p>
+        <NuxtLink to="/aviso-legal">
+          {{ content.common.footer.legalNotice }}
+        </NuxtLink>
+        <NuxtLink to="/politica-privacidad">
+          {{ content.common.footer.privacy }}
+        </NuxtLink>
+        <NuxtLink to="/politica-cookies">
+          {{ content.common.footer.cookies }}
+        </NuxtLink>
       </div>
     </div>
 

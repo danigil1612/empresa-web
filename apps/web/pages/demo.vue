@@ -148,12 +148,31 @@ async function handleSubmit(event: Event) {
               </label>
 
               <label class="demo-form__check">
-                <input type="checkbox" required>
+                <input
+                  type="checkbox"
+                  name="privacy-read"
+                  value="yes"
+                  required
+                >
                 <span>
                   {{ content.demo.form.consent }}
-                  <small>{{ content.demo.form.consentPending }}</small>
+                  <NuxtLink to="/politica-privacidad">
+                    {{ content.demo.form.consentLink }}
+                  </NuxtLink>.
                 </span>
               </label>
+
+              <div class="demo-form__privacy">
+                <strong>{{ content.demo.form.privacySummary.title }}</strong>
+                <p>{{ content.demo.form.privacySummary.controller }}</p>
+                <p>{{ content.demo.form.privacySummary.purpose }}</p>
+                <p>{{ content.demo.form.privacySummary.basis }}</p>
+                <p>{{ content.demo.form.privacySummary.recipients }}</p>
+                <p>{{ content.demo.form.privacySummary.rights }}</p>
+                <NuxtLink to="/politica-privacidad">
+                  {{ content.demo.form.privacySummary.more }}
+                </NuxtLink>
+              </div>
 
               <button
                 class="button button--primary button--wide"
