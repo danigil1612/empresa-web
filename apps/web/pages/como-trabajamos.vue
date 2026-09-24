@@ -97,11 +97,17 @@ usePageSeo(
 
           <div class="work-process__visual" aria-hidden="true">
             <div class="work-process__visual-top">
-              <span>Pulse</span>
+              <span class="work-process__visual-brand">
+                <img src="/images/pulse-mark.png" alt="" width="18" height="18">
+                Pulse
+              </span>
               <span>0{{ activeProcessIndex + 1 }} / 04</span>
             </div>
             <div class="work-process__visual-center">
-              <span class="work-process__visual-ring" />
+              <span
+                class="work-process__visual-ring"
+                :style="{ transform: `rotate(${activeProcessIndex * 90}deg)` }"
+              />
               <Transition name="work-process-switch" mode="out-in">
                 <strong :key="activeProcessIndex">0{{ activeProcessIndex + 1 }}</strong>
               </Transition>
