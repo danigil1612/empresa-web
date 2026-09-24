@@ -3,6 +3,8 @@ const { content } = usePulseI18n()
 const activeProcessIndex = ref(0)
 const activeMoodIndex = ref(1)
 const activePrincipleIndex = ref(0)
+const processTabs = ref<HTMLElement | null>(null)
+let processTouchStart: { x: number; y: number } | null = null
 const methodologyDarkRef = useScrollThemeReveal()
 const principleIcons = [
   'fi-br-feather',
@@ -20,6 +22,33 @@ const activeProcess = computed(
     content.value.methodology.process.steps[0],
 )
 
+function scrollProcessTabIntoView(index: number) {
+  if (!window.matchMedia('(max-width: 820px)').matches) {
+    return
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const target = processTabs.value?.querySelectorAll<HTMLButtonElement>('.work-process__tab')[index]
+
+  target?.scrollIntoView({
+    behavior: reduceMotion ? 'auto' : 'smooth',
+    block: 'nearest',
+    inline: 'center',
+  })
+}
+
+function setProcessStep(index: number) {
+  const lastIndex = content.value.methodology.process.steps.length - 1
+  const nextIndex = Math.min(Math.max(index, 0), lastIndex)
+
+  if (nextIndex === activeProcessIndex.value) {
+    return
+  }
+
+  activeProcessIndex.value = nextIndex
+  nextTick(() => scrollProcessTabIntoView(nextIndex))
+}
+
 function selectProcessStep(index: number, event: MouseEvent) {
   activeProcessIndex.value = index
 
@@ -33,6 +62,29 @@ function selectProcessStep(index: number, event: MouseEvent) {
       inline: 'center',
     })
   }
+}
+
+function startProcessSwipe(event: TouchEvent) {
+  const touch = event.touches[0]
+
+  if (touch) {
+    processTouchStart = { x: touch.clientX, y: touch.clientY }
+  }
+}
+
+function endProcessSwipe(event: TouchEvent) {
+  const touch = event.changedTouches[0]
+
+  if (touch && processTouchStart) {
+    const deltaX = touch.clientX - processTouchStart.x
+    const deltaY = touch.clientY - processTouchStart.y
+
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.35) {
+      setProcessStep(activeProcessIndex.value + (deltaX < 0 ? 1 : -1))
+    }
+  }
+
+  processTouchStart = null
 }
 
 usePageSeo(
@@ -70,7 +122,7 @@ usePageSeo(
           <p>{{ content.methodology.process.text }}</p>
         </div>
 
-        <div class="work-process" :aria-label="content.methodology.process.eyebrow">
+        <div ref="processTabs" class="work-process" :aria-label="content.methodology.process.eyebrow">
           <button
             v-for="(step, index) in content.methodology.process.steps"
             :key="step.title"
@@ -86,7 +138,13 @@ usePageSeo(
           </button>
         </div>
 
-        <div id="work-process-detail" class="work-process__detail">
+        <div
+          id="work-process-detail"
+          class="work-process__detail"
+          @touchstart.passive="startProcessSwipe"
+          @touchend.passive="endProcessSwipe"
+          @touchcancel="processTouchStart = null"
+        >
           <Transition name="work-process-switch" mode="out-in">
             <div :key="activeProcessIndex" class="work-process__copy" aria-live="polite">
               <span class="work-process__number">0{{ activeProcessIndex + 1 }}</span>

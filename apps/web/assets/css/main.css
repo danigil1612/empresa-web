@@ -2041,6 +2041,7 @@ h3 {
   margin: 34px auto 0;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
   gap: clamp(36px, 7vw, 100px);
+  touch-action: pan-y;
 }
 
 .work-process__copy {
@@ -2537,7 +2538,7 @@ h3 {
 }
 
 .mood-matrix__quadrant--2 {
-  background: var(--coral);
+  background: #f7aaa4;
   color: var(--ink-deep);
 }
 
@@ -4967,6 +4968,10 @@ body,
   .work-process__visual {
     min-height: 270px;
     padding: 22px;
+  }
+
+  .work-process__visual-center {
+    transform: translateY(-12px);
   }
 
   .offer-group {
