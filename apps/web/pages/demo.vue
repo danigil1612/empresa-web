@@ -1,14 +1,45 @@
 <script setup lang="ts">
-const { content } = usePulseI18n()
+const { content, locale } = usePulseI18n()
 const submitted = ref(false)
+const submitting = ref(false)
+const submitError = ref('')
+
+const formErrors = {
+  ca: 'No hem pogut enviar la sol·licitud. Torna-ho a provar o escriu-nos a info@emotion-pulse.com.',
+  es: 'No hemos podido enviar la solicitud. Inténtalo de nuevo o escríbenos a info@emotion-pulse.com.',
+  en: 'We could not send your request. Please try again or email us at info@emotion-pulse.com.',
+}
 
 usePageSeo(
   () => content.value.demo.seo.title,
   () => content.value.demo.seo.description,
 )
 
-function handleSubmit() {
-  submitted.value = true
+async function handleSubmit(event: Event) {
+  const form = event.currentTarget as HTMLFormElement
+  submitting.value = true
+  submitError.value = ''
+
+  try {
+    const response = await fetch('/api/request-demo.php', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    })
+
+    if (!response.ok) {
+      throw new Error('Demo request failed')
+    }
+
+    submitted.value = true
+    form.reset()
+  }
+  catch {
+    submitError.value = formErrors[locale.value]
+  }
+  finally {
+    submitting.value = false
+  }
 }
 </script>
 
@@ -46,6 +77,18 @@ function handleSubmit() {
             </div>
 
             <form class="demo-form" @submit.prevent="handleSubmit">
+              <label class="demo-form__website" aria-hidden="true">
+                Website
+                <input
+                  type="text"
+                  name="website"
+                  tabindex="-1"
+                  autocomplete="off"
+                >
+              </label>
+
+              <input type="hidden" name="locale" :value="locale">
+
               <label>
                 {{ content.demo.form.name }}
                 <input
@@ -112,10 +155,17 @@ function handleSubmit() {
                 </span>
               </label>
 
-              <button class="button button--primary button--wide" type="submit">
+              <button
+                class="button button--primary button--wide"
+                type="submit"
+                :disabled="submitting"
+              >
                 {{ content.demo.form.submit }}
                 <AnimatedArrowIcon />
               </button>
+              <p v-if="submitError" class="demo-form__error" role="alert">
+                {{ submitError }}
+              </p>
               <p class="demo-form__note">{{ content.demo.form.note }}</p>
             </form>
           </div>

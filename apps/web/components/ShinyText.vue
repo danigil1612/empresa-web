@@ -25,84 +25,19 @@ const props = withDefaults(
   },
 )
 
-const backgroundPosition = ref('150% center')
-const isPaused = ref(false)
-const reduceMotion = ref(false)
-let animationFrame: number | null = null
-let previousTime: number | null = null
-let elapsed = 0
-
 const shinyStyle = computed(() => {
-  if (props.disabled || reduceMotion.value) {
+  if (props.disabled) {
     return { color: props.color }
   }
 
+  const duration = Math.max(props.speed, 0.1) + Math.max(props.delay, 0)
+  const startsLeft = props.direction === 'left'
+
   return {
     backgroundImage: `linear-gradient(${props.spread}deg, ${props.color} 0%, ${props.color} 35%, ${props.shineColor} 50%, ${props.color} 65%, ${props.color} 100%)`,
-    backgroundPosition: backgroundPosition.value,
-  }
-})
-
-function updateAnimation(time: number) {
-  if (props.disabled || reduceMotion.value || isPaused.value) {
-    previousTime = null
-    animationFrame = window.requestAnimationFrame(updateAnimation)
-    return
-  }
-
-  if (previousTime === null) {
-    previousTime = time
-  } else {
-    elapsed += time - previousTime
-    previousTime = time
-  }
-
-  const animationDuration = Math.max(props.speed, 0.1) * 1000
-  const delayDuration = Math.max(props.delay, 0) * 1000
-  const cycleDuration = animationDuration + delayDuration
-  let progress = 0
-
-  if (props.yoyo) {
-    const fullCycle = cycleDuration * 2
-    const cycleTime = elapsed % fullCycle
-
-    if (cycleTime < animationDuration) {
-      progress = (cycleTime / animationDuration) * 100
-    } else if (cycleTime < cycleDuration) {
-      progress = 100
-    } else if (cycleTime < cycleDuration + animationDuration) {
-      progress = 100 - ((cycleTime - cycleDuration) / animationDuration) * 100
-    }
-  } else {
-    const cycleTime = elapsed % cycleDuration
-    progress = cycleTime < animationDuration
-      ? (cycleTime / animationDuration) * 100
-      : 100
-  }
-
-  const directionalProgress = props.direction === 'left' ? progress : 100 - progress
-  backgroundPosition.value = `${150 - directionalProgress * 2}% center`
-  animationFrame = window.requestAnimationFrame(updateAnimation)
-}
-
-function handleMouseEnter() {
-  if (props.pauseOnHover) {
-    isPaused.value = true
-  }
-}
-
-function handleMouseLeave() {
-  isPaused.value = false
-}
-
-onMounted(() => {
-  reduceMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  animationFrame = window.requestAnimationFrame(updateAnimation)
-})
-
-onBeforeUnmount(() => {
-  if (animationFrame !== null) {
-    window.cancelAnimationFrame(animationFrame)
+    '--shiny-duration': `${duration}s`,
+    '--shiny-start': startsLeft ? '150%' : '-50%',
+    '--shiny-end': startsLeft ? '-50%' : '150%',
   }
 })
 </script>
@@ -110,10 +45,12 @@ onBeforeUnmount(() => {
 <template>
   <span
     class="shiny-text"
-    :class="{ 'shiny-text--disabled': disabled || reduceMotion }"
+    :class="{
+      'shiny-text--disabled': disabled,
+      'shiny-text--yoyo': yoyo,
+      'shiny-text--pause-on-hover': pauseOnHover,
+    }"
     :style="shinyStyle"
-    @mouseenter="handleMouseEnter"
-    @mouseleave="handleMouseLeave"
   >
     {{ text }}
   </span>
@@ -124,13 +61,44 @@ onBeforeUnmount(() => {
   display: inline;
   background-repeat: repeat;
   background-size: 200% auto;
+  background-position: var(--shiny-start, 150%) center;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: shiny-sweep var(--shiny-duration, 8s) linear infinite;
+}
+
+.shiny-text--yoyo {
+  animation-direction: alternate;
+}
+
+.shiny-text--pause-on-hover:hover {
+  animation-play-state: paused;
 }
 
 .shiny-text--disabled {
   background: none !important;
   -webkit-text-fill-color: currentcolor;
+  animation: none;
+}
+
+@keyframes shiny-sweep {
+  0% {
+    background-position: var(--shiny-start, 150%) center;
+  }
+
+  50%,
+  100% {
+    background-position: var(--shiny-end, -50%) center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-text {
+    background: none !important;
+    color: v-bind(color);
+    -webkit-text-fill-color: currentcolor;
+    animation: none;
+  }
 }
 </style>

@@ -29,7 +29,11 @@ const { content } = usePulseI18n()
 
       <div class="site-footer__legal">
         <span>{{ content.common.footer.contact }}</span>
-        <p>{{ content.common.footer.email }}</p>
+        <p>
+          <a href="mailto:info@emotion-pulse.com">
+            {{ content.common.footer.email }}
+          </a>
+        </p>
         <p>{{ content.common.footer.legal }}</p>
       </div>
     </div>

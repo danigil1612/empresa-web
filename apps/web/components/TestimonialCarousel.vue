@@ -88,17 +88,17 @@ function endTouch(event: TouchEvent) {
 <style scoped>
 .testimonials-section { padding-top: 80px; border-top: 1px solid rgba(14, 42, 45, .12); }
 .testimonials { position: relative; margin-top: 48px; }
-.testimonials__stage { display: grid; padding: 28px 0 40px; overflow: hidden; isolation: isolate; perspective: 1400px; touch-action: pan-y; mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
+.testimonials__stage { display: grid; padding: 28px 0 40px; overflow: hidden; isolation: isolate; perspective: 1400px; touch-action: pan-y; -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent); }
 .testimonial {
   grid-area: 1 / 1; justify-self: center; display: flex; flex-direction: column;
   width: min(680px, calc(100% - 140px)); padding: clamp(28px, 4vw, 48px);
   border: 1px solid rgba(14, 42, 45, .13); border-radius: 28px;
-  background: #f6fafb; color: var(--ink-deep); opacity: .32; filter: blur(2px);
+  background: #f6fafb; color: var(--ink-deep); opacity: .32;
   transform: translateX(calc(var(--position) * 68%)) scale(.86) rotateY(calc(var(--position) * -12deg));
-  transition: transform 700ms cubic-bezier(.22, 1, .36, 1), opacity 600ms ease, filter 600ms ease, box-shadow 600ms ease;
+  transition: transform 700ms cubic-bezier(.22, 1, .36, 1), opacity 600ms ease, box-shadow 600ms ease;
   pointer-events: none;
 }
-.testimonial.is-active { z-index: 2; opacity: 1; filter: none; transform: translateX(0) scale(1) rotateY(0); box-shadow: 0 16px 36px rgba(14, 42, 45, .09); pointer-events: auto; }
+.testimonial.is-active { z-index: 2; opacity: 1; transform: translateX(0) scale(1) rotateY(0); box-shadow: 0 16px 36px rgba(14, 42, 45, .09); pointer-events: auto; }
 .testimonial__quote-mark { height: 48px; color: var(--coral); font-family: Georgia, serif; font-size: 88px; line-height: 1; }
 .testimonial blockquote { flex: 1; margin: 20px 0 32px; }
 .testimonial blockquote p { margin: 0; font-size: clamp(1.1rem, 1.7vw, 1.4rem); line-height: 1.6; }
