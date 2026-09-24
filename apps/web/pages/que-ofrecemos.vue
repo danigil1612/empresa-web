@@ -1,10 +1,6 @@
 <script setup lang="ts">
-const { content, locale } = usePulseI18n()
-const dashboardImage = computed(() =>
-  locale.value === 'es'
-    ? '/dashboard-distribucion-emociones.jpg'
-    : `/dashboard-distribucion-emociones-${locale.value}.png`,
-)
+const { content } = usePulseI18n()
+const dashboardImage = '/images/pulse-dashboard-macbook.png'
 const activeTab = ref(0)
 const tabList = ref<HTMLElement | null>(null)
 const activeDetail = computed(
@@ -97,11 +93,11 @@ usePageSeo(
         </div>
         <div v-reveal="120" class="product-showcase__visual">
           <img
-            class="product-showcase__dashboard"
+            class="product-showcase__dashboard product-showcase__dashboard--device"
             :src="dashboardImage"
             :alt="content.product.showcase.visualAlt"
-            width="3872"
-            height="2225"
+            width="1800"
+            height="1350"
             loading="lazy"
             decoding="async"
           />

@@ -1,7 +1,7 @@
 import { existsSync } from 'node:fs'
 
 const hasApprovedLogo = existsSync(
-  new URL('./public/images/logo-pulse.svg', import.meta.url),
+  new URL('./public/images/logo-pulse.png', import.meta.url),
 )
 
 export default defineNuxtConfig({
@@ -22,7 +22,9 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      dashboardUrl: process.env.NUXT_PUBLIC_DASHBOARD_URL || '',
+      dashboardUrl:
+        process.env.NUXT_PUBLIC_DASHBOARD_URL ||
+        'https://app.emotion-pulse.com/pulse/login',
       hasApprovedLogo,
     },
   },
@@ -40,6 +42,17 @@ export default defineNuxtConfig({
         {
           name: 'theme-color',
           content: '#0e2a2d',
+        },
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/png',
+          href: '/images/pulse-mark.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          href: '/images/apple-touch-icon.png',
         },
       ],
     },

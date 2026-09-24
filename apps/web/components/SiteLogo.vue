@@ -1,7 +1,12 @@
 <script setup lang="ts">
+const props = withDefaults(defineProps<{ useApproved?: boolean }>(), {
+  useApproved: false,
+})
 const config = useRuntimeConfig()
-const logoPath = '/images/logo-pulse.svg'
-const hasApprovedLogo = computed(() => Boolean(config.public.hasApprovedLogo))
+const logoPath = '/images/logo-pulse.png'
+const hasApprovedLogo = computed(
+  () => props.useApproved && Boolean(config.public.hasApprovedLogo),
+)
 </script>
 
 <template>
@@ -11,8 +16,8 @@ const hasApprovedLogo = computed(() => Boolean(config.public.hasApprovedLogo))
       class="brand__image"
       :src="logoPath"
       alt=""
-      width="132"
-      height="34"
+      width="105"
+      height="30"
     >
     <span v-else class="brand__word">Pulse</span>
   </span>

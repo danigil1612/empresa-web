@@ -2,6 +2,7 @@
 const { content } = usePulseI18n()
 const activeProcessIndex = ref(0)
 const activeMoodIndex = ref(1)
+const activePrincipleIndex = ref(0)
 const methodologyDarkRef = useScrollThemeReveal()
 const principleIcons = [
   'fi-br-feather',
@@ -161,11 +162,15 @@ usePageSeo(
           <h2>{{ content.methodology.principles.title }}</h2>
         </div>
 
-        <div class="principles-grid">
-          <article
+        <div v-reveal class="principles-grid">
+          <button
             v-for="(item, index) in content.methodology.principles.items"
             :key="item.title"
-            v-reveal="index * 80"
+            type="button"
+            class="principles-card"
+            :class="{ 'is-active': activePrincipleIndex === index }"
+            :aria-expanded="activePrincipleIndex === index"
+            @click="activePrincipleIndex = index"
           >
             <div class="principles-grid__topline">
               <i
@@ -176,8 +181,8 @@ usePageSeo(
               <span>0{{ index + 1 }}</span>
             </div>
             <h3>{{ item.title }}</h3>
-            <p>{{ item.text }}</p>
-          </article>
+            <p :aria-hidden="activePrincipleIndex !== index">{{ item.text }}</p>
+          </button>
         </div>
       </div>
     </section>
