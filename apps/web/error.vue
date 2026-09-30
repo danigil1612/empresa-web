@@ -23,10 +23,15 @@ const text = computed(() =>
     : content.value.common.error.genericText,
 )
 
-useSeoMeta({
-  title: () => title.value,
-  robots: 'noindex, nofollow',
-})
+useHead(() => ({
+  title: title.value || 'Página no encontrada',
+  meta: [
+    {
+      name: 'robots',
+      content: 'noindex, nofollow',
+    },
+  ],
+}))
 
 function leaveErrorPage(path: string) {
   clearError({ redirect: path })

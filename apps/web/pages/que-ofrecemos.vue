@@ -136,6 +136,7 @@ usePageSeo(
             class="product-tab-panel"
             role="tabpanel"
             :aria-labelledby="`product-tab-${activeTab}`"
+            tabindex="0"
           >
             <div class="product-tab-panel__copy">
               <span>0{{ activeTab + 1 }}</span>

@@ -14,6 +14,15 @@ export default defineNuxtConfig({
     output: {
       dir: '../../.output',
     },
+    hooks: {
+      'prerender:generate'(route) {
+        if (route.route !== '/404.html' || !route.contents) return
+
+        route.contents = route.contents
+          .replace('<title>· Pulse</title>', '<title>Página no encontrada · Pulse</title>')
+          .replace('</head>', '<meta name="robots" content="noindex, nofollow"></head>')
+      },
+    },
   },
   css: [
     '@fontsource-variable/outfit',
@@ -22,6 +31,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
+      siteUrl: 'https://emotion-pulse.com',
       dashboardUrl:
         process.env.NUXT_PUBLIC_DASHBOARD_URL ||
         'https://app.emotion-pulse.com/pulse/login',

@@ -49,22 +49,16 @@ function setProcessStep(index: number) {
   nextTick(() => scrollProcessTabIntoView(nextIndex))
 }
 
-function selectProcessStep(index: number, event: MouseEvent) {
+function selectProcessStep(index: number) {
   activeProcessIndex.value = index
-
-  if (window.matchMedia('(max-width: 820px)').matches) {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const target = event.currentTarget as HTMLElement
-
-    target.scrollIntoView({
-      behavior: reduceMotion ? 'auto' : 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    })
-  }
+  nextTick(() => scrollProcessTabIntoView(index))
 }
 
 function startProcessSwipe(event: TouchEvent) {
+  if (event.touches.length !== 1) {
+    processTouchStart = null
+    return
+  }
   const touch = event.touches[0]
 
   if (touch) {
@@ -131,7 +125,7 @@ usePageSeo(
             :class="{ 'is-active': activeProcessIndex === index }"
             :aria-pressed="activeProcessIndex === index"
             aria-controls="work-process-detail"
-            @click="selectProcessStep(index, $event)"
+            @click="selectProcessStep(index)"
           >
             <span>0{{ index + 1 }}</span>
             {{ step.title }}
@@ -141,12 +135,14 @@ usePageSeo(
         <div
           id="work-process-detail"
           class="work-process__detail"
+          aria-live="polite"
+          aria-atomic="true"
           @touchstart.passive="startProcessSwipe"
           @touchend.passive="endProcessSwipe"
           @touchcancel="processTouchStart = null"
         >
           <Transition name="work-process-switch" mode="out-in">
-            <div :key="activeProcessIndex" class="work-process__copy" aria-live="polite">
+            <div :key="activeProcessIndex" class="work-process__copy">
               <span class="work-process__number">0{{ activeProcessIndex + 1 }}</span>
               <h3>{{ activeProcess?.title }}</h3>
               <p>{{ activeProcess?.text }}</p>

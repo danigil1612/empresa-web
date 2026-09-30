@@ -6,8 +6,11 @@ const menuOpen = ref(false)
 const headerScrolled = ref(false)
 const homeDarkVisible = ref(false)
 const scrollProgress = ref(0)
+const header = ref<HTMLElement | null>(null)
+const menuButton = ref<HTMLButtonElement | null>(null)
 
 let animationFrame: number | null = null
+let mobileViewport: MediaQueryList | null = null
 
 const navigation = computed(() => [
   { label: content.value.common.nav.home, to: '/' },
@@ -39,6 +42,10 @@ watch(menuOpen, (isOpen) => {
   }
 
   document.body.classList.toggle('is-menu-open', isOpen)
+
+  if (isOpen) {
+    nextTick(() => header.value?.querySelector<HTMLAnchorElement>('.site-nav__links a')?.focus())
+  }
 })
 
 function updateHeader() {
@@ -72,6 +79,43 @@ function toggleMenu() {
   menuOpen.value = !menuOpen.value
 }
 
+function closeMenu(returnFocus = false) {
+  menuOpen.value = false
+  if (returnFocus) nextTick(() => menuButton.value?.focus())
+}
+
+function handleViewportChange() {
+  if (!mobileViewport?.matches) closeMenu()
+  handleScroll()
+}
+
+function handleMenuKeydown(event: KeyboardEvent) {
+  if (!menuOpen.value) return
+
+  if (event.key === 'Escape') {
+    event.preventDefault()
+    closeMenu(true)
+    return
+  }
+
+  if (event.key !== 'Tab') return
+
+  const controls = Array.from(header.value?.querySelectorAll<HTMLElement>(
+    'a[href]:not([aria-disabled="true"]):not([tabindex="-1"]), button:not(:disabled):not([tabindex="-1"]), [tabindex="0"]',
+  ) ?? []).filter((element) => element.getClientRects().length > 0 &&
+    window.getComputedStyle(element).visibility !== 'hidden')
+  const first = controls[0]
+  const last = controls[controls.length - 1]
+
+  if (event.shiftKey && (document.activeElement === first || !header.value?.contains(document.activeElement))) {
+    event.preventDefault()
+    last?.focus()
+  } else if (!event.shiftKey && (document.activeElement === last || !header.value?.contains(document.activeElement))) {
+    event.preventDefault()
+    first?.focus()
+  }
+}
+
 function handleDashboardClick(event: MouseEvent) {
   if (!dashboardUrl.value) {
     event.preventDefault()
@@ -79,12 +123,17 @@ function handleDashboardClick(event: MouseEvent) {
 }
 
 onMounted(() => {
+  mobileViewport = window.matchMedia('(max-width: 820px)')
+  mobileViewport.addEventListener('change', handleViewportChange)
+  document.addEventListener('keydown', handleMenuKeydown)
   updateHeader()
   window.addEventListener('scroll', handleScroll, { passive: true })
   window.addEventListener('resize', handleScroll, { passive: true })
 })
 
 onBeforeUnmount(() => {
+  mobileViewport?.removeEventListener('change', handleViewportChange)
+  document.removeEventListener('keydown', handleMenuKeydown)
   window.removeEventListener('scroll', handleScroll)
   window.removeEventListener('resize', handleScroll)
   document.body.classList.remove('is-menu-open')
@@ -97,6 +146,7 @@ onBeforeUnmount(() => {
 
 <template>
   <header
+    ref="header"
     class="site-header"
     :class="{
       'site-header--scrolled': headerScrolled,
@@ -109,11 +159,13 @@ onBeforeUnmount(() => {
         to="/"
         class="site-header__logo"
         :aria-label="content.common.a11y.home"
+        @click="closeMenu()"
       >
         <SiteLogo use-approved />
       </NuxtLink>
 
       <button
+        ref="menuButton"
         class="menu-button"
         type="button"
         :aria-expanded="menuOpen"
@@ -137,6 +189,7 @@ onBeforeUnmount(() => {
             :key="item.to"
             :to="item.to"
             :aria-current="route.path === item.to ? 'page' : undefined"
+            @click="closeMenu()"
           >
             {{ item.label }}
           </NuxtLink>
@@ -150,6 +203,7 @@ onBeforeUnmount(() => {
             :target="dashboardUrl ? '_blank' : undefined"
             :rel="dashboardUrl ? 'noopener noreferrer' : undefined"
             :aria-disabled="!dashboardUrl"
+            :tabindex="dashboardUrl ? undefined : -1"
             :title="
               dashboardUrl
                 ? content.common.nav.dashboard
@@ -159,7 +213,7 @@ onBeforeUnmount(() => {
           >
             {{ content.common.nav.dashboard }}
           </a>
-          <NuxtLink class="button button--primary button--small" to="/demo">
+          <NuxtLink class="button button--primary button--small" to="/demo" @click="closeMenu()">
             {{ content.common.nav.demo }}
           </NuxtLink>
           <LanguageSwitcher />

@@ -3,6 +3,7 @@ const { content, locale, localeOptions, setLocale } = usePulseI18n()
 const open = ref(false)
 const root = ref<HTMLElement | null>(null)
 const trigger = ref<HTMLButtonElement | null>(null)
+const menuId = `language-menu-${useId()}`
 
 const activeLocale = computed(
   () =>
@@ -24,7 +25,11 @@ function closeMenu(returnFocus = false) {
 }
 
 function toggleMenu() {
-  open.value = !open.value
+  if (open.value) {
+    closeMenu(true)
+  } else {
+    openAndFocus(localeOptions.findIndex((option) => option.code === locale.value))
+  }
 }
 
 function getOptionButtons() {
@@ -69,10 +74,19 @@ function handleMenuKeydown(event: KeyboardEvent) {
   } else if (event.key === 'End') {
     event.preventDefault()
     focusOption(buttons.length - 1)
+  } else if (event.key === 'Tab') {
+    // Resume normal tab order from the menu trigger, including the mobile nav trap.
+    trigger.value?.focus()
+    closeMenu()
   } else if (event.key === 'Escape') {
     event.preventDefault()
+    event.stopPropagation()
     closeMenu(true)
   }
+}
+
+function handleFocusOut(event: FocusEvent) {
+  if (!root.value?.contains(event.relatedTarget as Node | null)) closeMenu()
 }
 
 function handleOutside(event: PointerEvent) {
@@ -91,7 +105,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="root" class="language-switcher">
+  <div ref="root" class="language-switcher" @focusout="handleFocusOut">
     <button
       ref="trigger"
       class="language-switcher__trigger"
@@ -99,6 +113,7 @@ onBeforeUnmount(() => {
       :aria-label="content.common.language.label"
       aria-haspopup="menu"
       :aria-expanded="open"
+      :aria-controls="open ? menuId : undefined"
       @click="toggleMenu"
       @keydown.down.prevent="openAndFocus(0)"
       @keydown.up.prevent="openAndFocus(localeOptions.length - 1)"
@@ -109,6 +124,7 @@ onBeforeUnmount(() => {
 
     <div
       v-if="open"
+      :id="menuId"
       class="language-switcher__menu"
       role="menu"
       :aria-label="content.common.language.menu"
@@ -119,6 +135,7 @@ onBeforeUnmount(() => {
         :key="option.code"
         type="button"
         role="menuitemradio"
+        tabindex="-1"
         :aria-checked="locale === option.code"
         :class="{ 'is-active': locale === option.code }"
         @click="chooseLocale(option.code)"

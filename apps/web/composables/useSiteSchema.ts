@@ -1,11 +1,11 @@
 export function useSiteSchema() {
   const route = useRoute()
-  const requestUrl = useRequestURL()
+  const config = useRuntimeConfig()
   const { content, locale } = usePulseI18n()
 
   useHead(() => {
-    const siteUrl = new URL('/', requestUrl.origin).toString()
-    const pageUrl = new URL(route.path, requestUrl.origin).toString()
+    const siteUrl = new URL('/', config.public.siteUrl).toString()
+    const pageUrl = new URL(route.path, config.public.siteUrl).toString()
     const organizationId = `${siteUrl}#organization`
     const websiteId = `${siteUrl}#website`
 
@@ -17,6 +17,7 @@ export function useSiteSchema() {
           '@id': organizationId,
           name: 'Pulse',
           url: siteUrl,
+          logo: new URL('/images/logo-pulse.png', siteUrl).toString(),
           description: content.value.common.footer.description,
         },
         {

@@ -8,10 +8,29 @@
     "build": "npm --prefix apps/web run generate",
     "generate": "npm --prefix apps/web run generate",
     "preview": "npm --prefix apps/web run preview",
-    "format": "echo \"Configurar Prettier més endavant\"",
-    "lint": "echo \"Configurar ESLint més endavant\""
+    "format": "prettier --write apps/web README.md docs tests eslint.config.mjs",
+    "lint": "eslint apps/web tests eslint.config.mjs --max-warnings 0",
+    "typecheck": "npm --prefix apps/web run typecheck",
+    "test": "node --test tests/static-output.test.mjs",
+    "test:demo": "node --test tests/demo/request-demo.test.mjs",
+    "check": "npm run lint && npm run typecheck && npm run generate && npm test"
+  },
+  "engines": {
+    "node": "^24.15.0",
+    "npm": ">=11"
   },
   "workspaces": [
     "apps/web"
-  ]
+  ],
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.13.6",
+    "eslint": "^10.11.0",
+    "eslint-plugin-vue": "^10.11.1",
+    "prettier": "^3.9.9",
+    "typescript": "~5.9",
+    "typescript-eslint": "^8.70.1",
+    "vue-eslint-parser": "^10.4.1",
+    "vue-tsc": "^3.3.11"
+  }
 }

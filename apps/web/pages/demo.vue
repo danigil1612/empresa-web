@@ -3,6 +3,10 @@ const { content, locale } = usePulseI18n()
 const submitted = ref(false)
 const submitting = ref(false)
 const submitError = ref('')
+const formElement = ref<HTMLFormElement | null>(null)
+const successMessage = ref<HTMLDivElement | null>(null)
+const teamSizes = ['1-25', '26-100', '101-500', '500+'] as const
+let requestController: AbortController | undefined
 
 const formErrors = {
   ca: 'No hem pogut enviar la sol·licitud. Torna-ho a provar o escriu-nos a info@emotion-pulse.com.',
@@ -10,36 +14,77 @@ const formErrors = {
   en: 'We could not send your request. Please try again or email us at info@emotion-pulse.com.',
 }
 
+const sendingLabels = {
+  ca: 'Enviant…',
+  es: 'Enviando…',
+  en: 'Sending…',
+}
+
+const rateLimitErrors = {
+  ca: 'Has fet diverses sol·licituds. Espera uns minuts abans de tornar-ho a provar o escriu-nos a info@emotion-pulse.com.',
+  es: 'Has hecho varias solicitudes. Espera unos minutos antes de volver a intentarlo o escríbenos a info@emotion-pulse.com.',
+  en: 'You have made several requests. Please wait a few minutes before trying again or email us at info@emotion-pulse.com.',
+}
+
+onBeforeUnmount(() => requestController?.abort())
+
 usePageSeo(
   () => content.value.demo.seo.title,
   () => content.value.demo.seo.description,
 )
 
 async function handleSubmit(event: Event) {
+  if (submitting.value || submitted.value) return
+
   const form = event.currentTarget as HTMLFormElement
   submitting.value = true
   submitError.value = ''
+  const controller = new AbortController()
+  requestController = controller
+  const timeout = window.setTimeout(() => controller.abort(), 30000)
 
   try {
     const response = await fetch('/api/request-demo.php', {
       method: 'POST',
       body: new FormData(form),
       headers: { Accept: 'application/json' },
+      signal: controller.signal,
     })
+
+    if (response.status === 429) {
+      submitError.value = rateLimitErrors[locale.value]
+      return
+    }
 
     if (!response.ok) {
       throw new Error('Demo request failed')
     }
 
-    submitted.value = true
+    // A static host may return its HTML fallback with status 200 for a PHP URL.
+    const result: unknown = await response.json()
+    if (!result || typeof result !== 'object' || !('success' in result) || result.success !== true) {
+      throw new Error('Invalid demo response')
+    }
+
     form.reset()
+    submitted.value = true
+    await nextTick()
+    successMessage.value?.focus()
   }
   catch {
     submitError.value = formErrors[locale.value]
   }
   finally {
+    window.clearTimeout(timeout)
+    requestController = undefined
     submitting.value = false
   }
+}
+
+async function startAgain() {
+  submitted.value = false
+  await nextTick()
+  formElement.value?.querySelector<HTMLInputElement>('input[name="name"]')?.focus()
 }
 </script>
 
@@ -76,7 +121,13 @@ async function handleSubmit(event: Event) {
               <span>{{ content.demo.form.subheading }}</span>
             </div>
 
-            <form class="demo-form" @submit.prevent="handleSubmit">
+            <form
+              ref="formElement"
+              class="demo-form"
+              :aria-busy="submitting"
+              :aria-describedby="submitError ? 'demo-submit-error' : undefined"
+              @submit.prevent="handleSubmit"
+            >
               <label class="demo-form__website" aria-hidden="true">
                 Website
                 <input
@@ -84,6 +135,7 @@ async function handleSubmit(event: Event) {
                   name="website"
                   tabindex="-1"
                   autocomplete="off"
+                  maxlength="200"
                 >
               </label>
 
@@ -95,6 +147,7 @@ async function handleSubmit(event: Event) {
                   type="text"
                   name="name"
                   autocomplete="name"
+                  maxlength="120"
                   :placeholder="content.demo.form.namePlaceholder"
                   required
                 >
@@ -106,6 +159,9 @@ async function handleSubmit(event: Event) {
                   type="email"
                   name="email"
                   autocomplete="email"
+                  autocapitalize="none"
+                  :spellcheck="false"
+                  maxlength="254"
                   :placeholder="content.demo.form.emailPlaceholder"
                   required
                 >
@@ -118,6 +174,7 @@ async function handleSubmit(event: Event) {
                     type="text"
                     name="company"
                     autocomplete="organization"
+                    maxlength="160"
                     :placeholder="content.demo.form.companyPlaceholder"
                     required
                   >
@@ -129,8 +186,9 @@ async function handleSubmit(event: Event) {
                       {{ content.demo.form.select }}
                     </option>
                     <option
-                      v-for="size in content.demo.form.sizes"
-                      :key="size"
+                      v-for="(size, index) in content.demo.form.sizes"
+                      :key="teamSizes[index]"
+                      :value="teamSizes[index]"
                     >
                       {{ size }}
                     </option>
@@ -143,6 +201,7 @@ async function handleSubmit(event: Event) {
                 <textarea
                   name="message"
                   rows="4"
+                  maxlength="3000"
                   :placeholder="content.demo.form.messagePlaceholder"
                 />
               </label>
@@ -179,17 +238,17 @@ async function handleSubmit(event: Event) {
                 type="submit"
                 :disabled="submitting"
               >
-                {{ content.demo.form.submit }}
+                <span aria-live="polite">{{ submitting ? sendingLabels[locale] : content.demo.form.submit }}</span>
                 <AnimatedArrowIcon />
               </button>
-              <p v-if="submitError" class="demo-form__error" role="alert">
+              <p v-if="submitError" id="demo-submit-error" class="demo-form__error" role="alert">
                 {{ submitError }}
               </p>
               <p class="demo-form__note">{{ content.demo.form.note }}</p>
             </form>
           </div>
 
-          <div v-else class="demo-success" role="status">
+          <div v-else ref="successMessage" class="demo-success" role="status" tabindex="-1">
             <i
               class="fi fi-br-check demo-success__mark"
               aria-hidden="true"
@@ -200,7 +259,7 @@ async function handleSubmit(event: Event) {
             <button
               class="text-link"
               type="button"
-              @click="submitted = false"
+              @click="startAgain"
             >
               {{ content.common.actions.back }}
             </button>

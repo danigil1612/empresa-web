@@ -21,8 +21,13 @@ const direction = ref(1)
 const indicators = ref<HTMLElement | null>(null)
 const panel = ref<HTMLElement | null>(null)
 const panelHeight = ref<number | null>(null)
+const componentId = `offer-${useId()}`
 const currentGroup = computed(() => props.groups[currentStep.value])
 let resizeObserver: ResizeObserver | undefined
+
+watch(() => props.groups.length, (length) => {
+  currentStep.value = Math.min(currentStep.value, Math.max(0, length - 1))
+})
 
 function selectStep(index: number, focusIndicator = false) {
   if (index < 0 || index >= props.groups.length) return
@@ -56,8 +61,10 @@ function observePanel(element: Element) {
   resizeObserver?.disconnect()
   const measure = () => { panelHeight.value = (element as HTMLElement).offsetHeight }
   measure()
-  resizeObserver = new ResizeObserver(measure)
-  resizeObserver.observe(element)
+  if ('ResizeObserver' in window) {
+    resizeObserver = new ResizeObserver(measure)
+    resizeObserver.observe(element)
+  }
 }
 
 function hideDepartingPanel(element: Element) {
@@ -82,12 +89,12 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
         :class="{ 'is-active': currentStep === index, 'is-complete': currentStep > index }"
       >
         <button
-          :id="`offer-step-${index}`"
+          :id="`${componentId}-step-${index}`"
           class="offer-stepper__indicator"
           type="button"
           role="tab"
           :aria-selected="currentStep === index"
-          :aria-controls="`offer-step-panel-${index}`"
+          :aria-controls="`${componentId}-panel-${index}`"
           :tabindex="currentStep === index ? 0 : -1"
           @click="selectStep(index)"
           @keydown="handleIndicatorKeydown($event, index)"
@@ -110,12 +117,12 @@ onBeforeUnmount(() => resizeObserver?.disconnect())
     >
       <Transition name="offer-slide" @enter="observePanel" @before-leave="hideDepartingPanel">
         <div
-          :id="`offer-step-panel-${currentStep}`"
+          :id="`${componentId}-panel-${currentStep}`"
           :key="currentStep"
           ref="panel"
           class="offer-stepper__panel"
           role="tabpanel"
-          :aria-labelledby="`offer-step-${currentStep}`"
+          :aria-labelledby="`${componentId}-step-${currentStep}`"
           tabindex="0"
         >
           <p class="offer-stepper__count">{{ navigation.step }} 0{{ currentStep + 1 }} <span>/ 0{{ groups.length }}</span></p>

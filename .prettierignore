@@ -1,0 +1,8 @@
+node_modules
+.output
+apps/web/.nuxt
+apps/web/dist
+apps/web/localhost
+**/package-lock.json
+.openai
+apps/web/.openai

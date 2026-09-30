@@ -442,6 +442,11 @@ h3 {
 .site-header__logo {
   position: relative;
   z-index: 52;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
 .brand {
@@ -458,9 +463,14 @@ h3 {
 }
 
 .brand__image {
+  display: block;
   width: auto;
-  height: 30px;
-  transition: filter 420ms ease;
+  height: 26px;
+  transition: height 260ms cubic-bezier(0.22, 1, 0.36, 1), filter 420ms ease;
+}
+
+.site-header--scrolled .site-header__logo .brand__image {
+  height: 24px;
 }
 
 .site-nav,
@@ -4377,7 +4387,6 @@ body,
     opacity 760ms cubic-bezier(0.2, 0.8, 0.2, 1),
     transform 760ms cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, filter, transform;
 }
 
 [data-reveal].is-revealed {

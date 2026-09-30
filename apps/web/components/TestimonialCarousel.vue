@@ -23,6 +23,10 @@ function handleKey(event: KeyboardEvent) {
 }
 
 function startTouch(event: TouchEvent) {
+  if (event.touches.length !== 1) {
+    touchStart = null
+    return
+  }
   const touch = event.touches[0]
   if (touch) touchStart = { x: touch.clientX, y: touch.clientY }
 }
