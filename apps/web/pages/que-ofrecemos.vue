@@ -63,14 +63,18 @@ usePageSeo(
       </template>
     </PageHero>
 
+    <KioskScrollExperience
+      :eyebrow="content.product.kiosk.eyebrow"
+      :title="content.product.kiosk.title"
+      :hint="content.product.kiosk.hint"
+      :visual-alt="content.product.kiosk.ariaLabel"
+      :screen-eyebrow="content.product.offer.eyebrow"
+      :screen-title="content.product.offer.title"
+      :screen-text="content.product.offer.text"
+    />
+
     <section id="oferta" class="section offer-section">
       <div class="shell">
-        <div v-reveal class="section-heading">
-          <p class="eyebrow">{{ content.product.offer.eyebrow }}</p>
-          <h2>{{ content.product.offer.title }}</h2>
-          <p>{{ content.product.offer.text }}</p>
-        </div>
-
         <OfferStepper
           v-reveal="80"
           :groups="content.product.offer.groups"

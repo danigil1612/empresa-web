@@ -388,6 +388,12 @@ export const messages = {
           "PULSE combina una experiencia de respuesta sencilla con información continua, visual y accionable para que RR. HH. y dirección puedan entender mejor qué está pasando en la organización.",
         action: 'Descubrirlo en una demo',
       },
+      kiosk: {
+        eyebrow: 'Una experiencia que escucha',
+        title: 'Cinco segundos para transformar una emoción en información.',
+        hint: 'Desplázate para descubrir la experiencia',
+        ariaLabel: 'Secuencia del quiosco Pulse acercándose hasta su pantalla táctil.',
+      },
       offer: {
         eyebrow: 'Lo que recibe tu organización',
         title: "Una manera completa de entender, interpretar y actuar.",
@@ -1109,6 +1115,12 @@ export const messages = {
           "PULSE combina una experiència de resposta simple amb informació contínua, visual i accionable perquè RRHH i direcció puguin entendre millor què està passant a l’organització.",
         action: 'Descobrir-ho en una demo',
       },
+      kiosk: {
+        eyebrow: 'Una experiència que escolta',
+        title: 'Cinc segons per transformar una emoció en informació.',
+        hint: 'Desplaça’t per descobrir l’experiència',
+        ariaLabel: 'Seqüència del quiosc Pulse apropant-se fins a la pantalla tàctil.',
+      },
       offer: {
         eyebrow: 'El que rep la teva organització',
         title: "Una manera completa d’entendre, interpretar i actuar.",
@@ -1828,6 +1840,12 @@ export const messages = {
         description:
           "PULSE combines a simple response experience with continuous, visual and actionable information so HR and leadership can better understand what is happening in the organisation.",
         action: 'Discover it in a demo',
+      },
+      kiosk: {
+        eyebrow: 'An experience that listens',
+        title: 'Five seconds to turn an emotion into insight.',
+        hint: 'Scroll to discover the experience',
+        ariaLabel: 'Pulse kiosk sequence moving closer to its touch screen.',
       },
       offer: {
         eyebrow: 'What your organisation receives',
